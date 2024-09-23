@@ -1,0 +1,33 @@
+.navContainer {
+    background-color: #030303;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.navLeft {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 30px;
+}
+
+.navRight {
+    width: 10%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartIcon,
+.personIcon,.searchIcon {
+    color: #fff;
+    width: 20px;
+    cursor: pointer;
+}
