@@ -2,6 +2,7 @@ import styles from './Navbar.module.css'
 import { IoSearch,IoPerson } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 export default function Navbar(){
     const [showSearchBar,setShowSearchBar] = useState(false) 
     const handleSearchBar = ()=>{
@@ -12,7 +13,7 @@ export default function Navbar(){
     return(
         <div className={styles.navContainer}>
             <div className={styles.navLeft}>
-                <img src="./logo/Tech-Storepng.png" alt="" className={styles.logo}/>
+                <Link to={'/'}><img src="./logo/Tech-Storepng.png" alt="" className={styles.logo}/></Link>
                 <div className={styles.searchContainer}>
                     <IoSearch className={styles.searchIcon} onClick={handleSearchBar} />
 
@@ -22,11 +23,11 @@ export default function Navbar(){
                     <input type="search" placeholder='Pesquise aqui...' className={`${styles.searchBar} ${showSearchBar ? styles.showSearchBar : ''}`} />
                 </div>
             </div>
-            <ul>
-                <li>Mais Vendidos</li>
-                <li>Celulares</li>
-                <li>Computadores</li>
-                <li>Acessórios</li>
+            <ul className={styles.links}>
+                <li className={styles.link}>Mais Vendidos</li>
+                <li className={styles.link}>Celulares</li>
+                <li className={styles.link}>Computadores</li>
+                <li className={styles.link}>Acessórios</li>
             </ul>
             <div className={styles.navRight}>
             <FaShoppingCart className={styles.cartIcon} />

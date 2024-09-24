@@ -1,9 +1,22 @@
+@keyframes animationBar {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 400px;
+    }
+}
+
 .navContainer {
     background-color: #030303;
-    height: 60px;
+    height: 80px;
     width: 100%;
+    padding: 0 20px;
     display: flex;
     align-items: center;
+    position: fixed;
+    z-index: 999;
 }
 
 .navLeft {
@@ -14,8 +27,63 @@
 }
 
 .logo {
-    width: 30px;
+    width: 40px;
 }
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.searchBar {
+    width: 400px;
+    border-radius: 5px;
+    border: none;
+    display: none;
+    outline: none;
+    padding: 4px 0 4px 5px;
+    font-size: 14px;
+}
+
+.showSearchBar {
+    display: flex;
+    animation: animationBar 1.2s ease;
+}
+
+.links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.link {
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+        content: '';
+        height: 1.5px;
+        border-radius: 2px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        width: 0%;
+    }
+
+    &:hover::after {
+        width: 100%;
+        bottom: -1px;
+        transition: width .6s ease-out;
+
+
+    }
+}
+
 
 .navRight {
     width: 10%;
@@ -26,8 +94,9 @@
 }
 
 .cartIcon,
-.personIcon,.searchIcon {
+.personIcon,
+.searchIcon {
     color: #fff;
-    width: 20px;
+    font-size: 20px;
     cursor: pointer;
 }
