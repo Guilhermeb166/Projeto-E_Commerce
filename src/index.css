@@ -5,6 +5,8 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-body,.App{
+body,html{
   height: 100vh;
+  background-color: #EBEBEB;
+
 }

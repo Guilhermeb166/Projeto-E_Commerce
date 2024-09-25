@@ -1,0 +1,23 @@
+.footer {
+    background-color: #303030;
+    width: 100%;
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0;
+}
+
+.socialList {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.instaIcon,
+.whatIcon,
+.emailIcon {
+    font-size: 40px;
+    color: #fff;
+}
