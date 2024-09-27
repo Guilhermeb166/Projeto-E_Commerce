@@ -46,7 +46,7 @@ export default function Navbar() {
     return (
         <nav className={`${styles.navContainer} ${scrolled ? styles.navScrolled : ''}`} ref={navBar}>
             <div className={styles.navLeft}>
-                <Link to={'/'}><img src="./logo/Tech-Storepng.png" alt="" className={styles.logo} /></Link>
+                <Link to={'/'}><img src="./logo/Tech-Storepng.png" alt="" className={styles.logo} draggable='false'/></Link>
                 <div className={styles.searchContainer}>
                     <IoSearch className={styles.searchIcon} onClick={handleSearchBar} />
 

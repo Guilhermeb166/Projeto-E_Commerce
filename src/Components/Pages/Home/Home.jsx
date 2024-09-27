@@ -4,6 +4,7 @@ import notebooks from '../../../productsList/Notebooks'
 import phones from '../../../productsList/Phones'
 import derivados from '../../../productsList/Derivados'
 import ProductCard from '../Products/Cards/ProductCard'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
 
@@ -34,7 +35,7 @@ export default function Home() {
                 
                 <div className={styles.noteCard} >
                     {notes.map(notebook => (
-                        <img key={notebook.id} src={notebook.image} alt={notebook.name} className={styles.noteImg} />
+                        <img key={notebook.id} src={notebook.image} alt={notebook.name} className={styles.noteImg} draggable='false'/>
                     ))}
                 </div>
             
@@ -43,7 +44,7 @@ export default function Home() {
                 <h1>Celulares</h1>
                 <div className={styles.cellCard}>
                     {cells.map(phone => (
-                        <img key={phone.id} src={phone.image} alt={phone.name} className={styles.phoneImg} />
+                        <img key={phone.id} src={phone.image} alt={phone.name} className={styles.phoneImg} draggable='false'/>
                     ))}
                 </div>
             </div>
@@ -59,7 +60,7 @@ export default function Home() {
            </div>
 
 
-         
+         <button><Link to={'/products'}>clique</Link></button>
         </main>
     )
 }

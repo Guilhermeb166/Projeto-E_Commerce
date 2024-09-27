@@ -1,15 +1,16 @@
 import phones from './Phones';
 import notebooks from './Notebooks';
 import derivados from './Derivados';
+import styles from './ProductList.module.css'
 
-function ProductListPage () {
+function ProductListPage() {
   return (
     <div>
       <h1>Lista de Celulares</h1>
-      <div>
+      <div >
         {phones.map(phone => (
-          <div key={phone.id}>
-            <h2>{phone.name}</h2>
+          <div key={phone.id} className={styles.cardProduct}>
+            <h2 className={styles.productName}>{phone.name}</h2>
             <img src={phone.image} alt={phone.name} />
             <p>{phone.description}</p>
             <p>Preço: R$ {phone.price.toFixed(2)}</p>
