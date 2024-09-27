@@ -70,7 +70,9 @@ export default function Navbar() {
             </ul>
             <div className={styles.navRight}>
                 <FaShoppingCart className={styles.cartIcon} />
-                <IoPerson className={styles.personIcon} />
+                <Link to={'/login'}>
+                    <IoPerson className={styles.personIcon} />
+                </Link>
             </div>
         </nav>
     )

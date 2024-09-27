@@ -5,6 +5,7 @@ import phones from '../../../productsList/Phones'
 import derivados from '../../../productsList/Derivados'
 import ProductCard from '../Products/Cards/ProductCard'
 import { Link } from 'react-router-dom'
+import Carousel from '../../Layout/Header/Carousel'
 
 export default function Home() {
 
@@ -24,43 +25,42 @@ export default function Home() {
    
 
     //pegar os 8 primeiros
-    const notes = notebooks.slice(0, 8)
-    const cells = phones.slice(0, 8)
+    const notes = notebooks.slice(0, 4)
+    const cells = phones.slice(0, 4)
     return (
-        <main className={styles.home}>
-
-
-            <div className={styles.Card} >
-                <h1>Notebooks</h1>
-                
-                <div className={styles.noteCard} >
-                    {notes.map(notebook => (
-                        <img key={notebook.id} src={notebook.image} alt={notebook.name} className={styles.noteImg} draggable='false'/>
-                    ))}
+        <div>
+            <Carousel/>
+            <main className={styles.home}>
+                <div className={styles.Card} >
+                    <h1>Notebooks</h1>
+            
+                    <div className={styles.noteCard} >
+                        {notes.map(notebook => (
+                            <img key={notebook.id} src={notebook.image} alt={notebook.name} className={styles.noteImg} draggable='false'/>
+                        ))}
+                    </div>
+            
+                </div>
+                <div className={styles.Card}>
+                    <h1>Celulares</h1>
+                    <div className={styles.cellCard}>
+                        {cells.map(phone => (
+                            <img key={phone.id} src={phone.image} alt={phone.name} className={styles.phoneImg} draggable='false'/>
+                        ))}
+                    </div>
                 </div>
             
-            </div>
-            <div className={styles.Card}>
-                <h1>Celulares</h1>
-                <div className={styles.cellCard}>
-                    {cells.map(phone => (
-                        <img key={phone.id} src={phone.image} alt={phone.name} className={styles.phoneImg} draggable='false'/>
-                    ))}
-                </div>
-            </div>
-            
-                {/* Cards de produtos abaixo das seções de imagens */}
-            <div className={styles.productCardsSection}>
-                <div className={styles.cardGrid}>
-                    {/* Exibe 3 cards de Notebooks */}
-                    {shuffledProducts.map(notebook => (
-                        <ProductCard key={notebook.id} data={notebook} />
-                    ))}
-                </div>
-           </div>
-
-
-         <button><Link to={'/products'}>clique</Link></button>
-        </main>
+                    {/* Cards de produtos abaixo das seções de imagens */}
+                <div className={styles.productCardsSection}>
+                    <div className={styles.cardGrid}>
+                        {/* Exibe 3 cards de Notebooks */}
+                        {shuffledProducts.map(notebook => (
+                            <ProductCard key={notebook.id} data={notebook} />
+                        ))}
+                    </div>
+               </div>
+             <button><Link to={'/products'}>clique</Link></button>
+            </main>
+        </div>
     )
 }

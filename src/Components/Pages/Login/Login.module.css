@@ -1,0 +1,26 @@
+.loginContainer {
+    margin-top: 150px;
+    display: flex;
+    width: 100%;
+}
+
+.loginLeft {
+    width: 50%;
+    display: flex;
+    justify-content: end;
+}
+.loginAnimation{
+    width: 80%;
+    height: 600px;
+    border-radius: 10px 0 0 10px;
+
+}
+
+.loginRight {
+    width: 50%;
+}
+
+.registerForm {
+    display: flex;
+    flex-direction: column;
+}
