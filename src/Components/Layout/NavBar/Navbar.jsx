@@ -23,6 +23,10 @@ export default function Navbar() {
         navigate(`/search?q=${category}`);  
     }
 
+    const handleBestSellerClick = () => {
+        navigate('/best-sellers');
+    };
+
     const navBar = useRef(null)
 
     //Detecta a rolagem e altera o estado para adicionar o background
@@ -62,7 +66,7 @@ export default function Navbar() {
                 </div>
             </div>
             <ul className={styles.links}>
-                <li className={styles.link}>Mais Vendidos</li>
+                <li className={styles.link} onClick={handleBestSellerClick}>Mais Vendidos</li>
                 <li className={styles.link} onClick={() => handleCategoryClick('smartphone')}   >Celulares</li>
                 <li className={styles.link} onClick={() => handleCategoryClick('notebook')}>Computadores</li>
                 <li className={styles.link} onClick={() => handleCategoryClick('Acessorios')}>Acessórios</li>

@@ -53,7 +53,7 @@ export default function Home() {
                     {/* Cards de produtos abaixo das seções de imagens */}
                 <div className={styles.productCardsSection}>
                     <div className={styles.cardGrid}>
-                        {/* Exibe 3 cards de Notebooks */}
+                       
                         {shuffledProducts.map(notebook => (
                             <ProductCard key={notebook.id} data={notebook} />
                         ))}

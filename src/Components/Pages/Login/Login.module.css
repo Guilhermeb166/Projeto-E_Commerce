@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
 .loginContainer {
     margin-top: 150px;
     display: flex;
+    justify-content: center;
     width: 100%;
 }
 
@@ -9,18 +12,164 @@
     display: flex;
     justify-content: end;
 }
-.loginAnimation{
+
+.loginAnimation {
     width: 80%;
     height: 600px;
     border-radius: 10px 0 0 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.222);
 
 }
 
 .loginRight {
     width: 50%;
+    display: flex;
+    justify-content: start;
+
 }
 
-.registerForm {
+.formContainer {
+    background-color: #fff;
+    height: 600px;
+    width: 80%;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.222);
+}
+
+.registerForm,
+.loginForm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    padding: 40px 10px 10px;
+    gap: 30px;
+}
+
+.formTitle {
+    font-size: 30px;
+    text-align: center;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 900;
+    letter-spacing: 0;
+    color: #B1060F;
+    margin-bottom: 20px;
+}
+
+.inputWrapper {
     display: flex;
     flex-direction: column;
+    gap: 3px;
+}
+
+.label {
+    font-size: 18px;
+}
+
+.input {
+    width: 450px;
+    min-width: 150px;
+    max-width: 600px;
+    outline: none;
+    padding: 10px 2px 10px 5px;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.514);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.455);
+    border-radius: 5px;
+   
+}
+.inputPassword{
+    font-size: 16px;
+    border: none;
+    outline: none;
+    width: 440px;
+    min-width: 150px;
+    max-width: 600px;
+}
+.passwordWrapper{
+    padding: 10px 2px 10px 5px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.514);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.455);
+}
+.passwordBtn{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    font-size: 22px;
+}
+
+.formBtn {
+    width: 50%;
+    background-color: #B1060F;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.562);
+    max-width: 500px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.formBtn:hover {
+    background-color: #7c0309;
+}
+
+.forgottenPassword {
+    color: #000000;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.forgottenPassword:hover {
+    color: #B1060F;
+}
+
+.handleForm {
+    cursor: pointer;
+    font-size: 18px;
+}
+.handleForm:hover{
+    color: #B1060F;
+}
+
+.plataforms {
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+}
+
+.googleIcon {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.356);
+    font-size: 45px;
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.273);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.googleIcon:hover {
+    opacity: .8;
+}
+
+.faceIcon {
+    font-size: 45px;
+    color: #0866FF;
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.273);
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.faceIcon:hover {
+    color: #0652cc;
 }
