@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+/*CSS para o SearchResultsPage*/
 .CardsContainer {
     display: flex;
     align-items: center;
@@ -10,48 +11,10 @@
     width: 100%;
 }
 
-.searchText {
-    font-size: 30px;
-    
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-}
-
-.cardsWrapper {
+.ProductsCards {
     display: flex;
-    justify-content: center;
-    margin-inline: 10px;
     flex-wrap: wrap;
-    gap: 25px;
-}
+    gap: 40px;
+    justify-content: center;
 
-.cardProduct {
-    border-radius: 10px;
-    background-color: #fff;
-    display: flex;
-    padding: 5px 0px;
-    position: relative;
-    align-items: center;
-    justify-content: space-around;
-    cursor: pointer;
-    height: 300px;
-    overflow: hidden;
-    width: 230px;
-    flex-direction: column;
-    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.142);
-}
-.productImg {
-    width: 140px;
-}
-.notebookImg{
-    width: 180px;
-}
-.productTitle {
-    font-size: 20px;
-    text-align: center;
-    margin-inline: 5px;
-}
-.productPrice{
-    font-size: 18px;
-    text-align: center;
 }

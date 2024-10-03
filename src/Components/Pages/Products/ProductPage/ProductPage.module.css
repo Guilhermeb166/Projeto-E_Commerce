@@ -1,0 +1,35 @@
+.productPage {
+    margin-top: 100px;
+    height: 600px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.productPageContainer {
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    background-color: #fff;
+}
+
+.left {
+    width: 50%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.productImage {
+    width: 220px;
+}
+
+.right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

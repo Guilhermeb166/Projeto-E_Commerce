@@ -6,6 +6,7 @@ import styles from '../../../productsList/ProductList.module.css'
 import derivados from '../../../productsList/Derivados';
 import formatCurrency from '../../patterns/FormatCurrency';
 import Navbar from './Navbar';
+import ProductCard from '../../Pages/Products/Cards/ProductCard';
 
 export default function SearchResultsPage() {
     const location = useLocation();
@@ -37,8 +38,8 @@ export default function SearchResultsPage() {
         }
     }, [query]);
 
-      // Função para adicionar a classe notebookImg se a categoria for Notebook
-      const getProductImgClass = (product) => {
+    // Função para adicionar a classe notebookImg se a categoria for Notebook
+    const getProductImgClass = (product) => {
         if (Array.isArray(product.category)) {
             // Verifica se o array de categorias inclui "Notebook"
             if (product.category.some(category => category.toLowerCase() === 'notebook')) {
@@ -51,25 +52,21 @@ export default function SearchResultsPage() {
 
 
     return (
-        <div>
-            <Navbar/>
+        <section>
+        
 
             <div className={styles.CardsContainer}>
                 <h1 className={styles.searchText}>Resultados de pesquisa para: {query}</h1>
-                {results.length > 0 ? (
-                    <div className={styles.cardsWrapper}>
-                        {results.map(product => (
-                            <div key={product.id} className={styles.cardProduct}>
-                                <img src={product.image} alt={product.name} className={`${styles.productImg} ${getProductImgClass(product)}`}  draggable='false' />
-                                <h2 className={styles.productTitle}>{product.name}</h2>
-                                <p className={styles.productPrice}>{formatCurrency(product.price, 'BRL')}</p>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <p>Nenhum resultado encontrado.</p>
-                )}
+                <div className={styles.ProductsCards}>
+                    {results.length > 0 ? (
+                        results.map(product => (
+                            <ProductCard key={product.id} data={product} />
+                        ))
+                    ) : (
+                        <p>Nenhum resultado encontrado.</p>
+                    )}
+                </div>
             </div>
-        </div>
+        </section>
     );
 }

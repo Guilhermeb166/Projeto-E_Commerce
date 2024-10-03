@@ -1,6 +1,6 @@
 const derivados = [ 
     {
-        id: 1,
+        id: 31,
         name: "Fone de Ouvido Havit HV-H2002d",
         image: '/img/havit_H2002d.png',
         price: 169.90,
@@ -9,7 +9,7 @@ const derivados = [
         sales: 951
     },
     {
-        id: 2,
+        id: 32,
         name: "Webcam Full HD Logitech C920s",
         image: '/img/logitech_c920s.png',
         price: 429.99,
@@ -18,7 +18,7 @@ const derivados = [
         sales: 487
     },
     {
-        id: 3,
+        id: 33,
         name: "Mouse Gamer Logitech G203",
         image: '/img/logitech_g203.png',
         price: 141.90,
@@ -27,7 +27,7 @@ const derivados = [
         sales: 973
     },
     {
-        id: 4,
+        id: 34,
         name: "Mouse Gamer Redragon Cobra",
         image: '/img/redragon_cobra.png',
         price: 127.90,
@@ -36,7 +36,7 @@ const derivados = [
         sales: 583
     },
     {
-        id: 5,
+        id: 35,
         name: "Teclado sem fio Logitech K380s",
         image: '/img/logitech_k380s.png',
         price: 216.90,
@@ -45,7 +45,7 @@ const derivados = [
         sales: 310
     },
     {
-        id: 6,
+        id: 36,
         name: "Teclado Mecânico Redragon Kumara Pro",
         image: '/img/redragon_kumaraPRO.png',
         price: 308.22,
@@ -54,7 +54,7 @@ const derivados = [
         sales: 658
     },
     {
-        id: 7,
+        id: 37,
         name: "Teclado Logitech G213",
         image: '/img/logitech_g213.png',
         price: 389.99,
@@ -63,7 +63,7 @@ const derivados = [
         sales: 989
     },
     {
-        id: 8,
+        id: 38,
         name: "Teclado Mecânico Sem Fio Logitech G915 TKL",
         image: '/img/logitech_g915.png',
         price: 999.00,
@@ -72,7 +72,7 @@ const derivados = [
         sales: 461
     },
     {
-        id: 9,
+        id: 39,
         name: "Headset Gamer Sem Fio Logitech G733",
         image: '/img/logitech_g733.png',
         price: 1499.90,
@@ -81,7 +81,7 @@ const derivados = [
         sales: 247
     },
     {
-        id: 10,
+        id: 40,
         name: "Mouse Gamer Sem Fio Logitech G305",
         image: '/img/logitech_g305.png',
         price: 349.90,

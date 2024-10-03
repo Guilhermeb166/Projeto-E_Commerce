@@ -1,6 +1,6 @@
 const notebooks = [
     {
-        id: 1,
+        id: 16,
         name: "MacBook Air M1",
         image: '/img/macbook_air_m1.png',
         price: 8198.00,
@@ -9,7 +9,7 @@ const notebooks = [
         sales: 344,
     },
     {
-        id: 2,
+        id: 17,
         name: "Acer Aspire 5 ",
         image: '/img/aspire5.png',
         price: 2788.00,
@@ -18,7 +18,7 @@ const notebooks = [
         sales: 98
     },
     {
-        id: 3,
+        id: 18,
         name: "Apple M2 Ultra",
         image: '/img/m2ultra.png',
         price: 10599.00,
@@ -27,7 +27,7 @@ const notebooks = [
         sales: 56
     },
     {
-        id: 4,
+        id: 19,
         name: "Acer Swift 3 ",
         image: '/img/swift3.png',
         price: 5299.00,
@@ -36,7 +36,7 @@ const notebooks = [
         sales: 9
     },
     {
-        id: 5,
+        id: 20,
         name: "Dell XPS 13",
         image: '/img/dell_xps13.png',
         price: 11379.00,
@@ -45,7 +45,7 @@ const notebooks = [
         sales: 78,
     },
     {
-        id: 6,
+        id: 21,
         name: "Galaxy Book 4 ",
         image: '/img/book4.png',
         price: 2849.00,
@@ -54,7 +54,7 @@ const notebooks = [
         sales: 49
     },
     {
-        id: 7,
+        id: 22,
         name: "Acer Nitro V15 ",
         image: '/img/nitrov15.png',
         price: 5299.00,
@@ -63,7 +63,7 @@ const notebooks = [
         sales: 8
     },
     {
-        id: 8,
+        id:23,
         name: "ASUS TUF Gaming F15",
         image: '/img/tuf_F15.png',
         price: 4495.00,
@@ -72,7 +72,7 @@ const notebooks = [
         sales: 12
     },
     {
-        id: 9,
+        id:24,
         name: "Dell XPS-9300-A10S",
         image: '/img/xps_9300.png',
         price: 9269.00,
@@ -81,7 +81,7 @@ const notebooks = [
         sales: 15
     },
     {
-        id: 10,
+        id: 25,
         name: "Acer Aspire 3",
         image: '/img/aspire3.png',
         price: 2837.60,
@@ -90,7 +90,7 @@ const notebooks = [
         sales: 19
     },
     {
-        id: 11,
+        id: 26,
         name: "Samsung Galaxy Book3",
         image: '/img/book3.png',
         price: 4401.00,
@@ -99,7 +99,7 @@ const notebooks = [
         sales: 100
     },
     {
-        id: 12,
+        id: 27,
         name: "ASUS VivoBook Go 15",
         image: '/img/vivo_go15.png',
         price: 2837.00,
@@ -108,7 +108,7 @@ const notebooks = [
         sales: 61
     },
     {
-        id: 13,
+        id: 28,
         name: "Samsung Galaxy Book2",
         image: '/img/book2.png',
         price: 3299.00,
@@ -117,7 +117,7 @@ const notebooks = [
         sales: 32
     },
     {
-        id: 14,
+        id: 29,
         name: "ASUS ROG Strix G16",
         image: '/img/ROG_g16.png',
         price: 13499.00,
@@ -126,7 +126,7 @@ const notebooks = [
         sales: 58
     },
     {
-        id: 15,
+        id: 30,
         name: "Apple MacBook M3 Pro",
         image: '/img/apple_macbook_m3pro.png',
         price: 32999.99,

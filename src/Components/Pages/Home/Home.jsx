@@ -20,10 +20,6 @@ export default function Home() {
    // Embaralha os produtos e seleciona os primeiros 8
    const shuffledProducts = shuffle(allProducts).slice(0, 12);
    
-
-   
-   
-
     //pegar os 8 primeiros
     const notes = notebooks.slice(0, 4)
     const cells = phones.slice(0, 4)
@@ -54,8 +50,8 @@ export default function Home() {
                 <div className={styles.productCardsSection}>
                     <div className={styles.cardGrid}>
                        
-                        {shuffledProducts.map(notebook => (
-                            <ProductCard key={notebook.id} data={notebook} />
+                        {shuffledProducts.map(product => (
+                            <ProductCard key={product.id} data={product} />
                         ))}
                     </div>
                </div>
