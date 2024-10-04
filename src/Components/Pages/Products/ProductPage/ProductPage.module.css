@@ -16,9 +16,10 @@
     background-color: #fff;
 }
 
-.left {
+.productLeft {
     width: 50%;
     flex-grow: 1;
+    justify-content: center;
     display: flex;
     align-items: center;
 }
@@ -27,9 +28,25 @@
     width: 220px;
 }
 
-.right {
+.productRight {
+    border-left: 1px solid #acacac;
     width: 50%;
+    height: 90%;
+    gap: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.productName,
+.productDescription {
+    width: 100%;
+    text-align: start;
+    text-indent: 70px;
+}
+
+.productName {
+    margin-top: 25px;
+}
+
+.productDescription {}

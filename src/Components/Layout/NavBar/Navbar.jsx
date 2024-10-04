@@ -95,8 +95,11 @@ export default function Navbar() {
             </ul>
             <div className={styles.navRight}>
 
-                <FaShoppingCart className={styles.cartIcon} onClick={cartPage} />
-                {cart.length > 0 && <span className={styles.cartStatus}>{cart.reduce((total, item) => total + item.quantity, 0)}</span>}
+                <div className={styles.cartIconContainer}>
+                    <FaShoppingCart className={styles.cartIcon} onClick={cartPage} />
+                    {cart.length > 0 && <span className={styles.cartStatus} onClick={cartPage}>{cart.reduce((total, item) => total + item.quantity, 0)}</span>}
+                </div>
+                
 
                 <Link to={'/login'}>
                     <IoPerson className={styles.personIcon} />

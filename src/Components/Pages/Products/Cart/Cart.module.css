@@ -1,0 +1,23 @@
+.cartContainer {
+    margin-top: 150px;
+    height: 800px;
+}
+
+.cartWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-inline: 80px;
+}
+
+.cartItem {
+    display: flex;
+    border: 1px solid black;
+    width: 50%;
+}
+
+.cartResume {
+    background-color: #fff;
+    width: 40%;
+    border-radius: 10px;
+}
