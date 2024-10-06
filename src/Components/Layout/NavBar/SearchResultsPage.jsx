@@ -4,8 +4,7 @@ import phones from '../../../productsList/Phones';
 import notebooks from '../../../productsList/Notebooks';
 import styles from '../../../productsList/ProductList.module.css'
 import derivados from '../../../productsList/Derivados';
-import formatCurrency from '../../patterns/FormatCurrency';
-import Navbar from './Navbar';
+import getProductImgClass from '../../patterns/ReusableFunctions';
 import ProductCard from '../../Pages/Products/Cards/ProductCard';
 
 export default function SearchResultsPage() {
@@ -38,19 +37,6 @@ export default function SearchResultsPage() {
         }
     }, [query]);
 
-    // Função para adicionar a classe notebookImg se a categoria for Notebook
-    const getProductImgClass = (product) => {
-        if (Array.isArray(product.category)) {
-            // Verifica se o array de categorias inclui "Notebook"
-            if (product.category.some(category => category.toLowerCase() === 'notebook')) {
-                return styles.notebookImg;
-            }
-            // some: Procuramos na lista se uma das categorias é "Notebook". Se for, a função retorna a classe notebookImg.
-        }
-        return ''; // Retorna vazio se não for da categoria Notebook
-    };
-
-
     return (
         <section>
         
@@ -60,7 +46,7 @@ export default function SearchResultsPage() {
                 <div className={styles.ProductsCards}>
                     {results.length > 0 ? (
                         results.map(product => (
-                            <ProductCard key={product.id} data={product} />
+                            <ProductCard key={product.id} data={product} imgClass={`${styles.productImg} ${getProductImgClass(product)}`}/>
                         ))
                     ) : (
                         <p>Nenhum resultado encontrado.</p>

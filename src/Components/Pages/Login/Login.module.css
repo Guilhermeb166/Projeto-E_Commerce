@@ -52,7 +52,7 @@
     font-family: "Roboto Mono", monospace;
     font-weight: 900;
     letter-spacing: 0;
-    color: #B1060F;
+    color: var(--red);
     margin-bottom: 20px;
 }
 
@@ -105,7 +105,7 @@
 
 .formBtn {
     width: 50%;
-    background-color: #B1060F;
+    background-color: var(--red);
     color: #fff;
     border: none;
     padding: 10px;
@@ -131,7 +131,7 @@
 }
 
 .forgottenPassword:hover {
-    color: #B1060F;
+    color: var(--red);
 }
 
 .handleForm {
@@ -139,7 +139,7 @@
     font-size: 18px;
 }
 .handleForm:hover{
-    color: #B1060F;
+    color: var(--red);
 }
 
 .plataforms {

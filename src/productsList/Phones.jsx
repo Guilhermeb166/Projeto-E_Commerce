@@ -3,7 +3,7 @@ const phones = [
     {
         id: 1,
         name: "Samsung Galaxy S21 FE ",
-        image: "/img/s21_fe.png",
+        image: "/img/smartphones/s21_fe.png",
         price: 3819.00,
         category: ["Smartphone", "Samsung"],
         description: "Galaxy S21 Fe, 5G, 128 Gb, Dual - Sm-G990Ezarzto, Preto, Quadriband, Samsung CelularP",
@@ -12,7 +12,7 @@ const phones = [
     {
         id: 2,
         name: "Iphone 13",
-        image: '/img/iphone13.png',
+        image: '/img/smartphones/iphone13.png',
         price: 3550.00,
         category: ["Smartphone", "Apple"],
         description: "Apple iPhone 13 (128 GB) - Luz das estrelas",
@@ -21,7 +21,7 @@ const phones = [
     {
         id: 3,
         name: "Xiaomi Mi Note 11S",
-        image: '/img/mi11.png',
+        image: '/img/smartphones/mi11.png',
         price: 1149.00,
         category: ["Smartphone", "Xiaomi"],
         description: "Smartphone Xiaomi Redmi Note 11S 5G 128GB Preto 6GB Ram",
@@ -30,7 +30,7 @@ const phones = [
     {
         id: 4,
         name: "Moto G24",
-        image: '/img/motog24.png',
+        image: '/img/smartphones/motog24.png',
         price: 669.00,
         category: ["Smartphone", "Motorola"],
         description: "Smartphone Motorola Moto G24 8GB RAM Boost* 128GB Grafite",
@@ -39,7 +39,7 @@ const phones = [
     {
         id: 5,
         name: "Galaxy A55",
-        image: '/img/samsunga55.png',
+        image: '/img/smartphones/samsunga55.png',
         price: 2144.00,
         category: ["Smartphone", "Samsung"],
         description: "Celular Samsung Galaxy A55 5G, Câmera Tripla até 50MP, Tela 6.6, 256GB",
@@ -48,7 +48,7 @@ const phones = [
     {
         id: 6,
         name: "Xiaomi Redmi Note 13",
-        image: '/img/redmi_note13.png',
+        image: '/img/smartphones/redmi_note13.png',
         price: 1100.00,
         category: ["Smartphone", "Xiaomi"],
         description: "8+256G Powerful Snapdragon® performance 120Hz FHD+ AMOLED display 33W fast charging with 5000mAh battery No NFC",
@@ -57,7 +57,7 @@ const phones = [
     {
         id: 7,
         name: "Xiaomi POCO X6 Pro",
-        image: '/img/pocox6.png',
+        image: '/img/smartphones/pocox6.png',
         price: 2123.00,
         category: ["Smartphone", "Xiaomi"],
         description: "12GB+512GB NFC Dimensity 8300-Ultra 64MP câmera tripla 67W 120Hz AMOLED",
@@ -66,7 +66,7 @@ const phones = [
     {
         id: 8,
         name: "Samsung Galaxy S23 Ultra",
-        image: '/img/galaxy_s23.png',
+        image: '/img/smartphones/galaxy_s23.png',
         price: 4499.99,
         category: ["Smartphone", "Samsung"],
         description: "5G 256GB Tela 6.8'' 12GB RAM IP68 Processador Qualcomm Snapdragon 8 Gen 2 Câmera Quádrupla de até 200MP + Selfie 12MP",
@@ -75,7 +75,7 @@ const phones = [
     {
         id: 9,
         name: "Moto G84",
-        image: '/img/motog84.png',
+        image: '/img/smartphones/motog84.png',
         price: 1339.00,
         category: ["Smartphone", "Motorola"],
         description: "Smartphone Moto G84 5G 16GB RAM Boost* 256GB",
@@ -84,7 +84,7 @@ const phones = [
     {
         id: 10,
         name: "Moto G54",
-        image: '/img/motog54.png',
+        image: '/img/smartphones/motog54.png',
         price: 1076.00,
         category: ["Smartphone", "Motorola"],
         description: "Smartphone Moto G54 5G 256GB 8GB RAM",
@@ -93,7 +93,7 @@ const phones = [
     {
         id: 11,
         name: "Xiaomi POCO C65",
-        image: '/img/pococ65.png',
+        image: '/img/smartphones/pococ65.png',
         price: 780.00,
         category: ["Smartphone", "Xiaomi"],
         description: "6GB+128GB MediaTek Helio G85 Octa Core 5000mAh 6.74 90Hz HD+ display 50MP Camera NFC",
@@ -102,7 +102,7 @@ const phones = [
     {
         id: 12,
         name: "Apple iPhone 15 Pro Max",
-        image: '/img/iPhone15_PRO.png',
+        image: '/img/smartphones/iPhone15_PRO.png',
         price: 8399.00,
         category: ["Smartphone", "Apple"],
         description: "Apple iPhone 15 Pro Max (256 GB)",
@@ -111,7 +111,7 @@ const phones = [
     {
         id: 13,
         name: "Xiaomi Note 12",
-        image: '/img/note12.png',
+        image: '/img/smartphones/note12.png',
         price: 1088.00,
         category: ["Smartphone", "Xiaomi"],
         description: "Smartphone Xiaomi Note 12 4G 128 GB - 8 GB de RAM",
@@ -120,7 +120,7 @@ const phones = [
     {
         id: 14,
         name: "ASUS ROG Phone 6",
-        image: '/img/ROG_phone6.png',
+        image: '/img/smartphones/ROG_phone6.png',
         price: 4197.00,
         category: ["Smartphone", "ASUS"],
         description: "Smartphone Gamer ROG Phone 6, Snapdragon 8+ Gen 1, 12 GB, 256 GB, Android 12, Dual SIM",
@@ -129,7 +129,7 @@ const phones = [
     {
         id: 15,
         name: "Samsung Galaxy A15",
-        image: '/img/galaxya15.png',
+        image: '/img/smartphones/galaxya15.png',
         price: 928.00,
         category: ["Smartphone", "Samsung"],
         description: "Smartphone Samsung Galaxy A15 5G 128GB",

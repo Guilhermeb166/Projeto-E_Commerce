@@ -6,7 +6,7 @@ import { BsFillCartPlusFill } from 'react-icons/bs';
 import Context from '../../../../Context/Context';
 import styles from './ProductCard.module.css';
 
-export default function ProductCard({ data }) {
+export default function ProductCard({ data,imgClass }) {
     const { name, price, image } = data;
     const { setSelectedProduct, addToCart } = useContext(Context); // Pegando a função addToCart
     const navigate = useNavigate();
@@ -24,7 +24,9 @@ export default function ProductCard({ data }) {
 
     return (
         <div className={styles.cardProduct} onClick={handleCardClick}>
-            <img src={image} alt={name} className={styles.productImage} />
+            <div className={styles.productImgWrapper}>
+                <img src={image} alt={name} className={imgClass} />
+            </div>
             <button className={styles.addCart_btn}>
                 <BsFillCartPlusFill 
                     className={styles.addCart_icon}
@@ -35,7 +37,7 @@ export default function ProductCard({ data }) {
             <div className={styles.productInfo}>
                 <h2 className={styles.productName}>{name}</h2>
                 <h2 className={styles.productPrice}>{formatCurrency(price, 'BRL')} </h2>
-                {/* */} 
+                
             </div>
         </div>
     );
@@ -43,10 +45,10 @@ export default function ProductCard({ data }) {
 
 ProductCard.propTypes = {
     data: propTypes.shape({
-        id: propTypes.oneOfType([propTypes.string, propTypes.number]).isRequired,
-        name: propTypes.string.isRequired,
-        price: propTypes.number.isRequired,
-        image: propTypes.string.isRequired,
-        category: propTypes.string.isRequired,
+        id: propTypes.any.isRequired,
+        name: propTypes.any.isRequired,
+        price: propTypes.any.isRequired,
+        image: propTypes.any.isRequired,
+        category: propTypes.any.isRequired,
     }).isRequired,
 };

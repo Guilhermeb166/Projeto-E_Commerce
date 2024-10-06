@@ -3,7 +3,7 @@ import phones from '../../../productsList/Phones';
 import notebooks from '../../../productsList/Notebooks';
 import derivados from '../../../productsList/Derivados';
 import styles from '../../../productsList/ProductList.module.css';
-import formatCurrency from '../../patterns/FormatCurrency';
+import getProductImgClass from '../../patterns/ReusableFunctions';
 import Navbar from '../../Layout/NavBar/Navbar';
 import ProductCard from '../Products/Cards/ProductCard';
 
@@ -30,7 +30,7 @@ export default function BestSellersPage() {
                 {bestSellers.length > 0 ? (
                     <div className={styles.ProductsCards}>
                         {bestSellers.map(product => (
-                            <ProductCard key={product.id} data={product}/>
+                            <ProductCard key={product.id} data={product} imgClass={`${styles.productImg} ${getProductImgClass(product)}`}/>
                             
                         ))}
                     </div>

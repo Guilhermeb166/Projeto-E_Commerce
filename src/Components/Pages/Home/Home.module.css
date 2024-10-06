@@ -66,3 +66,6 @@
     flex-wrap: wrap;
     gap: 25px;
 }
+.productImage {
+    width: 140px;
+}

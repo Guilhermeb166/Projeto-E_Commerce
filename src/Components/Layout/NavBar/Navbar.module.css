@@ -25,11 +25,11 @@
 }
 
 .navScrolled {
-    background-color: #303030;
+    background-color: var(--gray);
 }
 
 .navContainer:hover {
-    background-color: #303030;
+    background-color: var(--gray);
     transition: all .3s ease-out;
 }
 
@@ -129,7 +129,7 @@
     width: 30px;
 }
 .cartStatus{
-    background-color: #B1060F;
+    background-color: var(--red);
     border-radius: 50%;
     color: #fff;
     position: absolute;

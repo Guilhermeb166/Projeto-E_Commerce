@@ -9,23 +9,23 @@ export default function Provider({ children }) {
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
-  // Sincronizar o carrinho com o localStorage
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    // Sincronizar o carrinho com o localStorage
+    useEffect(() => {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
   // Função para adicionar produtos ao carrinho
   const addToCart = (product) => {
     setCart((prevCart) => {
       const productExists = prevCart.some((item) => item.id === product.id);
       if (productExists) {
-        return prevCart.map((item)=>
-            item.id === product.id
-                ? {...item, quantity: item.quantity + 1}
-                : item
-        )     
-    }
-      return [...prevCart,{...product, quantity: 1}];
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      }
+      return [...prevCart, { ...product, quantity: 1 }];
     });
   };
 
@@ -34,13 +34,18 @@ export default function Provider({ children }) {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
+   // Função para atualizar o carrinho com um novo estado
+   const updateCart = (newCart) => {
+    setCart(newCart);
+  };
   // Prover os valores no contexto
   const value = {
     selectedProduct,
     setSelectedProduct,
     cart,
     addToCart,
-    removeFromCart
+    removeFromCart,
+    updateCart,
   };
 
   return (

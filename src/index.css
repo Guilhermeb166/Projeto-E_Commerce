@@ -1,3 +1,7 @@
+:root{
+  --red:#B1060F;
+  --gray:#303030;
+}
 *{
   padding: 0;
   margin: 0;

@@ -4,7 +4,7 @@ import notebooks from '../../../productsList/Notebooks'
 import phones from '../../../productsList/Phones'
 import derivados from '../../../productsList/Derivados'
 import ProductCard from '../Products/Cards/ProductCard'
-import { Link } from 'react-router-dom'
+
 import Carousel from '../../Layout/Header/Carousel'
 
 export default function Home() {
@@ -51,11 +51,11 @@ export default function Home() {
                     <div className={styles.cardGrid}>
                        
                         {shuffledProducts.map(product => (
-                            <ProductCard key={product.id} data={product} />
+                            <ProductCard key={product.id} data={product} imgClass={`${styles.productImage}`}/>
                         ))}
                     </div>
                </div>
-             <button><Link to={'/products'}>clique</Link></button>
+             
             </main>
         </div>
     )
