@@ -78,6 +78,10 @@
     width: 130px;
 }
 
+.redragonCobraCartImg {
+    width: 90px;
+}
+
 /*nome, preço e quantidade do produto*/
 .cartName,
 .cartPrice,

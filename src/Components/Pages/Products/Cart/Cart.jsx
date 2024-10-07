@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import formatCurrency from '../../../patterns/FormatCurrency'
 import styles from './Cart.module.css'
 import Context from '../../../../Context/Context'
@@ -15,6 +15,12 @@ export default function Cart() {
       return acc + (product.price * product.quantity);
     }, 0);
   }
+
+  useEffect(() => {
+    if (Array.isArray(cart) && cart.length === 0) {
+      <p>Seu carrinho está vazio!</p>
+    }
+  }, [cart, navigate])
 
   const moreQuantity = (product) => {
     const updatedCart = cart.map((item) => {
@@ -37,21 +43,25 @@ export default function Cart() {
   };
   const cartImgClass = (product) => {
     if (Array.isArray(product.category)) {
-        // Verifica se o array de categorias inclui "Notebook"
-        if (product.category.some(category => category.toLowerCase() === 'notebook')) {
-          return styles.notebookCartImg;
-        } 
-        // Verifica se o array de categorias inclui "Acessorios"
-        else if (product.category.some(category => category.toLowerCase() === 'acessorios')) {
-          return styles.accessoryCartImg;
-        }
-        else if(product.category.some(category => category.toLowerCase() === 'smartphone')){
-          return styles.smartphoneCartImg
-        }
+      // Verifica se o array de categorias inclui "Notebook"
+      if (product.category.some(category => category.toLowerCase() === 'notebook')) {
+        return styles.notebookCartImg;
       }
-    
-    return''
-};
+      //verifica se o produto tem a categoria cobra( a imagem estava muito grande)
+      else if(product.category.some(category => category.toLowerCase() === 'cobra')){
+        return styles.redragonCobraCartImg;
+      }
+      // Verifica se o array de categorias inclui "Acessorios"
+      else if (product.category.some(category => category.toLowerCase() === 'acessorios')) {
+        return styles.accessoryCartImg;
+      }
+      else if (product.category.some(category => category.toLowerCase() === 'smartphone')) {
+        return styles.smartphoneCartImg
+      }
+    }
+
+    return ''
+  };
 
   return (
     <main className={styles.cartContainer}>

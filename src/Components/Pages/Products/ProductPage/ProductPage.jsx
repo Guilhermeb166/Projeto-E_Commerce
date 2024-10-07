@@ -11,21 +11,29 @@ export default function ProductPage() {
         return <div>Produto não encontrado!</div>
     }
 
-    const { name, price, image, description } = selectedProduct
+    const { name, price, image, description,sales } = selectedProduct
     return (
         <main className={styles.productPage}>
             <div className={styles.productPageContainer}>
                 <div className={styles.productLeft}>
-                    <img src={image} alt={name} className={styles.productImage} />
+                    <div className={styles.imgList}>
+                        <div className={styles.imgItem}></div>
+                        <div className={styles.imgItem}></div>
+                        <div className={styles.imgItem}></div>
+                    </div>
+                    <div className={styles.productImgWrapper}>
+                        <img src={image} alt={name} className={styles.productImage} />
+                    </div>
                 </div>
                 <div className={styles.productRight}>
                     <h1 className={styles.productName}>{name}</h1>
+                    <p>Vendas: {sales}+</p>
                     <p className={styles.productDescription}>{description}</p>
                     <p className={styles.productPrice}>{formatCurrency(price, 'BRL')}</p>
 
-                    <div>
-                       <button>Comprar</button>
-                       <BsFillCartPlusFill/>
+                    <div className={styles.paymentWrapper}>
+                        <button className={styles.buyBtn}>Comprar</button>
+                        <BsFillCartPlusFill className={styles.addCartIcon} />
                     </div>
                 </div>
             </div>

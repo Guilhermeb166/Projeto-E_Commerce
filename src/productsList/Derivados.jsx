@@ -4,7 +4,7 @@ const derivados = [
         name: "Fone de Ouvido Havit HV-H2002d",
         image: '/img/accessories/havit_H2002d.png',
         price: 169.90,
-        category: ["Headphones", "Havit", "Acessórios"],
+        category: ["Headphones", "Havit", "Acessorios"],
         description: "Headphone Fone de Ouvido Havit HV-H2002d, Gamer, com Microfone, Falante 53mm, Plug 3.5mm: compatível com XBOX ONE e PS4, HAVIT, HV-H2002d",
         sales: 951
     },
@@ -28,11 +28,11 @@ const derivados = [
     },
     {
         id: 34,
-        name: "Mouse Gamer Redragon Cobra",
+        name: "Mouse Gamer Redragon Cobra, Chroma RGB",
         image: '/img/accessories/redragon_cobra.png',
         price: 127.90,
-        category: ["Mouse", "Redragon", "Acessorios"],
-        description: "Mouse Gamer Redragon Cobra, Chroma RGB, 10000DPI, 7 Botões",
+        category: ["Cobra","Mouse", "Redragon", "Acessorios"],
+        description: "Mouse Gamer Redragon Cobra, Chroma RGB, 10000DPI, 7 Botões, Preto",
         sales: 583
     },
     {
