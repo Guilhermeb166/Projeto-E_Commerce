@@ -24,7 +24,6 @@ export default function BestSellersPage() {
 
     return (
         <div>
-            <Navbar/>
             <div className={styles.CardsContainer}>
                 <h1 className={styles.searchText}>Top 5 Produtos Mais Vendidos por Categoria</h1>
                 {bestSellers.length > 0 ? (

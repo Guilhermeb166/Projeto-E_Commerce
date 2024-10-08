@@ -121,13 +121,15 @@ export default function Navbar() {
 
             {/* Menu lateral */}
             <div className={`${styles.sideMenu} ${showMenu ? styles.showSideMenu : ''}`}>
-                <ul>
-                    <IoClose onClick={toggleMenu}/>
-                    <li className={styles.menuLink}>Mais Vendidos</li>
-                    <li className={styles.menuLink}>Celulares</li>
-                    <li className={styles.menuLink}>Computadores</li>
-                    <li className={styles.menuLink}>Acessórios</li>
+                <ul className={styles.menuList}>
+                    <IoClose onClick={toggleMenu} className={styles.closeMenu}/>
+                    <li className={styles.menuLink} onClick={handleBestSellerClick}>Mais Vendidos</li>
+                    <li className={styles.menuLink} onClick={() => handleCategoryClick('smartphone')}>Celulares</li>
+                    <li className={styles.menuLink}  onClick={() => handleCategoryClick('notebook')}>Computadores</li>
+                    <li className={styles.menuLink}  onClick={() => handleCategoryClick('Acessorios')}>Acessórios</li>
                     <li className={styles.menuLink}>Contato</li>
+                    <li  className={styles.menuLink}>Carrinho</li>
+                    <li  className={styles.menuLink}>Login</li>
                 </ul>
             </div>
         </nav>

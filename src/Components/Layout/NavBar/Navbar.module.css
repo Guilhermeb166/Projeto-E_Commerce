@@ -145,6 +145,7 @@
 }
 .hamburgerIcon{
     font-size: 24px;
+    cursor: pointer;
     color: #fff;
 }
 /* Menu lateral inicialmente escondido */
@@ -152,11 +153,12 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 250px;
+    width: 170px;
     height: 100%;
     background-color: var(--gray);
-    transition: right 0.3s ease-in-out;
+    transition: right .8s ease;
     z-index: 1001;
+    padding-top: 15px;
 }
 
 .showSideMenu {
@@ -164,20 +166,36 @@
 }
 
 /* Estilize os links dentro do menu lateral */
-.sideMenu ul {
+.menuList{
+    display: flex;
+    padding:25px 10px 0 15px;
+    flex-direction: column;
     list-style: none;
-    padding: 0;
-    margin: 0;
+    position: relative;
+    gap: 25px;
 }
 
 .menuLink {
-    padding: 15px;
     color: white;
     cursor: pointer;
     font-size: 18px;
+
+    &:hover{
+        color: var(--red);
+        transition: all 0.3s ease;
+    }
 }
 /*Para dispositivos móveis*/
 @media  screen and (max-width:481px) {
+    @keyframes animationBar {
+        from {
+            width: 0;
+        }
+    
+        to {
+            width: 200px;
+        }
+    }
     .navContainer {
         display: flex;
         justify-content: center;
@@ -191,35 +209,29 @@
         /* Transição suave */
         z-index: 1000;
     }
-    
     .navScrolled {
         background-color: var(--gray);
     }
-    
     .navContainer:hover {
         background-color: var(--gray);
         transition: all .3s ease-out;
     }
-    
     .navLeft {
         flex-grow: 1;
         display: flex;
         align-items: center;
         gap: 20px;
     }
-    
     .logo {
         width: 39px;
     }
-    
     .searchContainer {
         display: flex;
         align-items: center;
         gap: 5px;
     }
-    
     .searchBar {
-        width: 400px;
+        width: 200px;
         border-radius: 5px;
         border: none;
         display: none;
@@ -227,13 +239,10 @@
         padding: 4px 0 4px 5px;
         font-size: 14px;
     }
-    
     .showSearchBar {
         display: flex;
         animation: animationBar 1.2s ease;
     }
-   
-    
     .links {
         list-style: none;
         display: none;
@@ -241,7 +250,6 @@
         gap: 20px;
     
     }
-    
     .link {
         color: #fff;
         cursor: pointer;
@@ -261,17 +269,12 @@
             background-color: #fff;
             width: 0%;
         }
-    
         &:hover::after {
             width: 100%;
             bottom: -1px;
             transition: width .6s ease-out;
-    
-    
         }
     }
-    
-    
     .navRight {
         width: 10%;
         display: none;
@@ -279,7 +282,6 @@
         justify-content: center;
         align-items: center;
     }
-    
     .cartIcon,
     .personIcon,
     .searchIcon {
@@ -287,7 +289,6 @@
         font-size: 22px;
         cursor: pointer;
     }
-    
     .cartIconContainer:hover,
     .personIcon:hover {
         transform: scale(1.3);
@@ -309,19 +310,23 @@
         padding: 1px 4px;
         cursor: pointer;
     }
-}
-.hamburgerMenu {
-        display: flex; /* Mostra o ícone do menu hamburger em telas pequenas */
-}
-.menuList{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--gray);
-    list-style: none;
-}
-.menuLink{
-    color: #fff;
-}
-.showMenu{
-    display: flex;
+    .hamburgerMenu {
+            display: flex; /* Mostra o ícone do menu hamburger em telas pequenas */
+    }
+    .closeMenu{
+        cursor: pointer;
+        color: #fff;
+        font-size: 24px;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+    }
+    .menuLink{
+        color: #fff;
+        cursor: pointer;
+    }
+    .showMenu{
+        display: flex;
+    }
 }
