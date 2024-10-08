@@ -69,6 +69,9 @@ export default function Navbar() {
             alert('O carrinho está vazio!')
         }
     }
+    const loginPage = ()=>{
+        navigate('/login')
+    }
 
     // Lógica para o menu hamburger
     const toggleMenu = () => {
@@ -109,9 +112,9 @@ export default function Navbar() {
                 </div>
                 
 
-                <Link to={'/login'}>
-                    <IoPerson className={styles.personIcon} />
-                </Link>
+             
+                    <IoPerson className={styles.personIcon} onClick={loginPage}/>
+                
             </div>
 
             {/* Ícone de menu hambúrguer que só aparece em telas pequenas */}
@@ -122,14 +125,15 @@ export default function Navbar() {
             {/* Menu lateral */}
             <div className={`${styles.sideMenu} ${showMenu ? styles.showSideMenu : ''}`}>
                 <ul className={styles.menuList}>
+                    <li  className={styles.menuLink} onClick={cartPage}>Carrinho</li>
+                    <li  className={styles.menuLink} onClick={loginPage}>Login</li>
                     <IoClose onClick={toggleMenu} className={styles.closeMenu}/>
                     <li className={styles.menuLink} onClick={handleBestSellerClick}>Mais Vendidos</li>
                     <li className={styles.menuLink} onClick={() => handleCategoryClick('smartphone')}>Celulares</li>
                     <li className={styles.menuLink}  onClick={() => handleCategoryClick('notebook')}>Computadores</li>
                     <li className={styles.menuLink}  onClick={() => handleCategoryClick('Acessorios')}>Acessórios</li>
                     <li className={styles.menuLink}>Contato</li>
-                    <li  className={styles.menuLink}>Carrinho</li>
-                    <li  className={styles.menuLink}>Login</li>
+                    
                 </ul>
             </div>
         </nav>
