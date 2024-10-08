@@ -1,5 +1,5 @@
 import styles from './Navbar.module.css'
-import { IoSearch, IoPerson } from "react-icons/io5";
+import { IoSearch, IoPerson, IoClose } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Context from '../../../Context/Context';
+import { IoIosMenu } from 'react-icons/io';
 
 export default function Navbar() {
     const { cart } = useContext(Context);
@@ -14,6 +15,7 @@ export default function Navbar() {
     const [searchTerm, setSearchTerm] = useState("");
     //const [background,setBackground] = useState(false)
     const [scrolled, setScrolled] = useState(false); // Novo estado para controlar o background
+    const [showMenu, setShowMenu] = useState(false); // Estado para o menu hamburger
     const navigate = useNavigate();
     const location = useLocation(); // Hook para verificar a rota atual
     const handleSearchBar = () => {
@@ -68,6 +70,11 @@ export default function Navbar() {
         }
     }
 
+    // Lógica para o menu hamburger
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
+    };
+
     return (
         <nav className={`${styles.navContainer} ${scrolled || location.pathname !== '/' ? styles.navScrolled : ''}`} ref={navBar}>
             <div className={styles.navLeft}>
@@ -86,7 +93,8 @@ export default function Navbar() {
                     </form>
                 </div>
             </div>
-            <ul className={styles.links}>
+            
+            <ul className={`${styles.links} `}>
                 <li className={styles.link} onClick={handleBestSellerClick}>Mais Vendidos</li>
                 <li className={styles.link} onClick={() => handleCategoryClick('smartphone')}   >Celulares</li>
                 <li className={styles.link} onClick={() => handleCategoryClick('notebook')}>Computadores</li>
@@ -104,6 +112,23 @@ export default function Navbar() {
                 <Link to={'/login'}>
                     <IoPerson className={styles.personIcon} />
                 </Link>
+            </div>
+
+            {/* Ícone de menu hambúrguer que só aparece em telas pequenas */}
+            <div className={styles.hamburgerMenu} onClick={toggleMenu}>
+                <IoIosMenu className={styles.hamburgerIcon} />
+            </div>
+
+            {/* Menu lateral */}
+            <div className={`${styles.sideMenu} ${showMenu ? styles.showSideMenu : ''}`}>
+                <ul>
+                    <IoClose onClick={toggleMenu}/>
+                    <li className={styles.menuLink}>Mais Vendidos</li>
+                    <li className={styles.menuLink}>Celulares</li>
+                    <li className={styles.menuLink}>Computadores</li>
+                    <li className={styles.menuLink}>Acessórios</li>
+                    <li className={styles.menuLink}>Contato</li>
+                </ul>
             </div>
         </nav>
     )
