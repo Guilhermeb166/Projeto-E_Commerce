@@ -136,8 +136,10 @@
     
     .cardGrid {
         width: 95%;
+        display: flex;
+        justify-content: center;
     }
     .productImage {
-        width: 140px;
+        width: 120px;
     }
 }

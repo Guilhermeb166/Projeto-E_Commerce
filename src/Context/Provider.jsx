@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function Provider({ children }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [cartBtn,setCartBtn] = useState(false)
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
@@ -38,6 +39,33 @@ export default function Provider({ children }) {
    const updateCart = (newCart) => {
     setCart(newCart);
   };
+
+
+  // Função para controlar a exibição do botão do carrinho com base no tamanho da tela
+  const showCartBtn = () => {
+    if (window.innerWidth < 461) {
+      setCartBtn(true);
+    } else {
+      setCartBtn(false);
+    }
+  };
+   // UseEffect para monitorar mudanças no tamanho da janela
+   useEffect(() => {
+    // Define o estado inicial
+    showCartBtn();
+
+    // Adiciona um listener de resize
+    const handleResize = () => {
+      showCartBtn();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup do event listener
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   // Prover os valores no contexto
   const value = {
     selectedProduct,
@@ -46,6 +74,9 @@ export default function Provider({ children }) {
     addToCart,
     removeFromCart,
     updateCart,
+    showCartBtn,
+    cartBtn,
+    setCartBtn
   };
 
   return (

@@ -125,7 +125,7 @@ export default function Navbar() {
             {/* Menu lateral */}
             <div className={`${styles.sideMenu} ${showMenu ? styles.showSideMenu : ''}`}>
                 <ul className={styles.menuList}>
-                    <li  className={styles.menuLink} onClick={cartPage}>Carrinho</li>
+                    <li  className={styles.menuLink} onClick={cartPage}>Carrinho <span className={styles.cartStatusLink}>{cart.reduce((total,item)=>total+item.quantity,0)}</span></li>
                     <li  className={styles.menuLink} onClick={loginPage}>Login</li>
                     <IoClose onClick={toggleMenu} className={styles.closeMenu}/>
                     <li className={styles.menuLink} onClick={handleBestSellerClick}>Mais Vendidos</li>
