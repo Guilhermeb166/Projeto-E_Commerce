@@ -7,12 +7,13 @@ import ProductCard from '../Products/Cards/ProductCard'
 
 import Carousel from '../../Layout/Header/Carousel'
 import { useEffect, useState } from 'react'
+import getProductImgClass from '../../patterns/ReusableFunctions'
 
 export default function Home() {
     const [displayCount,setDisplayCount] = useState(4)
 
    // Seleciona todos os notebooks e celulares
-   const allProducts = [...notebooks.slice(0, 4), ...phones.slice(0, 4),...derivados.slice(0,4)];
+   const allProducts = [...notebooks.slice(0, 5), ...phones.slice(0, 5),...derivados.slice(0,5)];
 
    // Função para embaralhar os produtos
    function shuffle(array) {
@@ -20,7 +21,7 @@ export default function Home() {
    }
 
    // Embaralha os produtos e seleciona os primeiros 8
-   const shuffledProducts = shuffle(allProducts).slice(0, 12);
+   const shuffledProducts = shuffle(allProducts).slice(0, 15);
    
     //pegar os 8 primeiros
     const notes = notebooks.slice(0, 4)
@@ -68,7 +69,7 @@ export default function Home() {
                     <div className={styles.cardGrid}>
                        
                         {shuffledProducts.map(product => (
-                            <ProductCard key={product.id} data={product} imgClass={`${styles.productImage}`}/>
+                            <ProductCard key={product.id} data={product} imgClass={`${styles.productImage} ${getProductImgClass(product)}`}/>
                         ))}
                     </div>
                </div>
