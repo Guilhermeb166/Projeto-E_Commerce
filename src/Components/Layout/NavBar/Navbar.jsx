@@ -31,10 +31,16 @@ export default function Navbar() {
 
     const handleCategoryClick = (category) => {
         navigate(`/search?q=${category}`);
+        if(window.innerWidth<481){
+            setShowMenu(!showMenu)
+        }
     }
 
     const handleBestSellerClick = () => {
         navigate('/best-sellers');
+        if(window.innerWidth<481){
+            setShowMenu(!showMenu)
+        }
     };
 
     const navBar = useRef(null)
@@ -65,6 +71,9 @@ export default function Navbar() {
     const cartPage = () =>{
         if(cart.length>0){
             navigate('/cart')
+            if (window.innerWidth < 481) {
+                setShowMenu(!showMenu);
+            }
         }else{
             alert('O carrinho está vazio!')
         }
