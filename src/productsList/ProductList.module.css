@@ -35,3 +35,17 @@
 .redragonCobraImg{
     width: 100px;
 }
+
+/*Estilização para dispositivos móveis*/
+@media  screen and (max-width:481px) {
+    .notebookImg {
+        width: 135px;
+    }
+    .accessoryImg {
+        min-width: 100px;
+        max-width: 110px;
+    }
+    .redragonCobraImg{
+        width: 85px;
+    }
+}

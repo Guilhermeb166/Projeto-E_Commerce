@@ -71,6 +71,10 @@ export default function Navbar() {
     }
     const loginPage = ()=>{
         navigate('/login')
+        
+        if (window.innerWidth < 481) {
+            setShowMenu(!showMenu);
+        }
     }
 
     // Lógica para o menu hamburger

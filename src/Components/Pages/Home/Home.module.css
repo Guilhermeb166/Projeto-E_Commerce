@@ -127,19 +127,18 @@
         height: 82%;
         user-select: none;
     }
-    
     .productCardsSection {
         display: flex;
         width: 100%;
         justify-content: center;
     }
-    
     .cardGrid {
         width: 95%;
+        gap: 20px;
         display: flex;
         justify-content: center;
     }
     .productImage {
-        width: 120px;
+        width: 110px;
     }
 }

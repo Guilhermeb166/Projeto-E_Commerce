@@ -4,7 +4,6 @@ import notebooks from '../../../productsList/Notebooks';
 import derivados from '../../../productsList/Derivados';
 import styles from '../../../productsList/ProductList.module.css';
 import getProductImgClass from '../../patterns/ReusableFunctions';
-import Navbar from '../../Layout/NavBar/Navbar';
 import ProductCard from '../Products/Cards/ProductCard';
 
 export default function BestSellersPage() {

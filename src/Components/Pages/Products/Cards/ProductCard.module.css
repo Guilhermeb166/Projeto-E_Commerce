@@ -92,7 +92,7 @@
 
 @media screen and (max-width: 481px){
     .cardProduct {
-        
+        margin-top: 25px;
         position: relative;
         align-items: center;
 
