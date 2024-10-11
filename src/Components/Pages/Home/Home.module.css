@@ -61,10 +61,10 @@
 .cardGrid {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 85%;
     margin: auto;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 40px 30px;
 }
 .productImage {
     width: 140px;

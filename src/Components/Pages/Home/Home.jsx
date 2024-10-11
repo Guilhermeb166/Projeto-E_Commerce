@@ -11,17 +11,17 @@ import getProductImgClass from '../../patterns/ReusableFunctions'
 
 export default function Home() {
     const [displayCount,setDisplayCount] = useState(4)
+    const [numberCards,setNumberCards] = useState(16)
 
    // Seleciona todos os notebooks e celulares
-   const allProducts = [...notebooks.slice(0, 5), ...phones.slice(0, 5),...derivados.slice(0,5)];
+   const allProducts = [...notebooks.slice(0, 8), ...phones.slice(0, 8),...derivados.slice(0,8)];
 
    // Função para embaralhar os produtos
    function shuffle(array) {
        return array.sort(() => Math.random() - 0.5);
    }
 
-   // Embaralha os produtos e seleciona os primeiros 8
-   const shuffledProducts = shuffle(allProducts).slice(0, 15);
+   
    
     //pegar os 8 primeiros
     const notes = notebooks.slice(0, 4)
@@ -32,8 +32,10 @@ export default function Home() {
         const handleResize = ()=>{
             if(window.innerWidth<481){
                 setDisplayCount(2)//exibe 2 produtos
+                setNumberCards(8)
             }else {
                 setDisplayCount(4)//exibe 4 produtos
+                setNumberCards(16)
             }
         }
         handleResize()//função para carregar o componente
@@ -42,6 +44,9 @@ export default function Home() {
 
         return () => window.removeEventListener('resize', handleResize); //Limpa o listener ao desmontar
     },[])
+
+    // Embaralha os produtos e seleciona os primeiros 8
+   const shuffledProducts = shuffle(allProducts).slice(0, numberCards);
     return (
         <div>
             <Carousel/>

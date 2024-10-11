@@ -9,6 +9,7 @@ import { FaCaretSquareLeft, FaCaretSquareRight } from 'react-icons/fa'
 export default function Cart() {
   const navigate = useNavigate()
   const { cart, removeFromCart, updateCart } = useContext(Context);
+  const {setShowTable,showTable} = useContext(Context)
 
   const totalPrice = () => {
     return cart.reduce((acc, product) => {
@@ -51,6 +52,9 @@ export default function Cart() {
       else if(product.category.some(category => category.toLowerCase() === 'cobra')){
         return styles.redragonCobraCartImg;
       }
+      else if(product.category.some(category => category.toLowerCase()==='webcam')){
+        return styles.webcamCartImg
+      }
       // Verifica se o array de categorias inclui "Acessorios"
       else if (product.category.some(category => category.toLowerCase() === 'acessorios')) {
         return styles.accessoryCartImg;
@@ -63,14 +67,31 @@ export default function Cart() {
     return ''
   };
 
+  //useEffect para monitorar a largura da tela
+  useEffect(()=>{
+    const handleResize = ()=>{
+        if(window.innerWidth<481){
+          setShowTable(false)
+        }else {
+          setShowTable(true)
+        }
+    }
+    handleResize()//função para carregar o componente
+
+    window.addEventListener('resize',handleResize)//adiciona o listener de resize
+
+    return () => window.removeEventListener('resize', handleResize); //Limpa o listener ao desmontar
+},[setShowTable])
+
   return (
     <main className={styles.cartContainer}>
       <h1 className={styles.pageTitle}>Carrinho de Compras</h1>
       {Array.isArray(cart) && cart.length === 0 ? (
         navigate('/')
       ) : (
-        <div className={styles.cartWrapper}>
-          <table className={styles.tableContainer}>
+        <section className={styles.cartWrapper}>
+          
+          {showTable ? <table className={styles.tableContainer}>
             <thead>
               <tr className={styles.tableTitles}>
                 <th></th>
@@ -111,12 +132,45 @@ export default function Cart() {
               ))}
             </tbody>
           </table>
+          
+          :
+      
+            <div >
+            {cart.map((product)=>(
+              <div className={styles.mobileCart}  key={product.id}>
+                <div className={styles.cartImgName}>
+                  <img src={product.image} alt={product.name} className={`${styles.productImg} ${cartImgClass(product)}`} />
+                  <h2 className={styles.cartName}>{product.name}</h2>
+                </div>
+                <div className={styles.mobileCartItem}>
+                  <h2 className={styles.mobileCartTitle}>Preço:</h2>
+                  <p className={styles.cartPrice}>{formatCurrency(product.price, 'BRL')}</p>
+                </div>
+                <div className={styles.mobileCartItem}>
+                  <h2 className={styles.mobileCartTitle}>Quantidade:</h2>
+                  <div className={styles.amount}>
+                    <FaCaretSquareLeft className={styles.amountBtn} onClick={() => lessQuantity(product)} />
+                    <p className={styles.cartAmount}>{product.quantity}</p>
+                    <FaCaretSquareRight className={styles.amountBtn} onClick={() => moreQuantity(product)} />
+                  </div>
+                </div>
+                <div className={styles.mobileCartItem}>
+                  <h2 className={styles.mobileCartTitle}>Subtotal:</h2>
+                  <p className={styles.cartSubTotal}>{formatCurrency(product.price * product.quantity, 'BRL')}</p>
+                </div>
+                <button onClick={() => removeFromCart(product.id)} className={styles.cartRemove}>Remover</button>
+              </div>
+            ))}
+            </div>
+
+          }
+          
           <div className={styles.cartResume}>
             <h1 className={styles.cartResumeTitle}>Resumo do Carrinho</h1>
             <p className={styles.totalPrice}>Total: {formatCurrency(totalPrice(), 'BRL')}</p>
             <button className={styles.paymentBtn}>Forma de Pagamento</button>
           </div>
-        </div>
+        </section>
       )}
     </main>
   )

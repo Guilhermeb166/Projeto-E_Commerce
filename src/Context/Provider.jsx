@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 export default function Provider({ children }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartBtn,setCartBtn] = useState(false)
+  const [showTable,setShowTable] = useState(true)
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
@@ -76,7 +77,9 @@ export default function Provider({ children }) {
     updateCart,
     showCartBtn,
     cartBtn,
-    setCartBtn
+    setCartBtn,
+    showTable,
+    setShowTable
   };
 
   return (
