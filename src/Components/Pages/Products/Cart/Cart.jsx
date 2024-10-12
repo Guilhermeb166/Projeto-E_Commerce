@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { TiDelete } from 'react-icons/ti'
 import { FaCaretSquareLeft, FaCaretSquareRight } from 'react-icons/fa'
 
+
 export default function Cart() {
   const navigate = useNavigate()
   const { cart, removeFromCart, updateCart } = useContext(Context);
@@ -36,10 +37,16 @@ export default function Cart() {
   const lessQuantity = (product) => {
     const updatedCart = cart.map((item) => {
       if (item.id === product.id) {
+        if (item.quantity === 1) {
+          return null; // Se a quantidade for 1 e diminuir, retornamos null para removê-lo
+        }
         return { ...item, quantity: item.quantity - 1 };
       }
       return item;
-    });
+    })
+    .filter(item => item !== null); // Remove todos os itens que são null (os produtos removidos)
+
+    
     updateCart(updatedCart); // Chama a função do contexto
   };
   const cartImgClass = (product) => {

@@ -22,17 +22,57 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
-.productImgWrapper{
+.productImgWrapper {
     background-color: #acacac;
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    position: relative;
+    overflow: hidden;
+    height: 450px;
+    padding: 40px 55px;
     display: flex;
+    border-radius: 5px;
     justify-content: center;
     align-items: center;
+    cursor: zoom-in;
+    /* Remova transições que afetam propriedades dinâmicas */
 }
+
 .productImage {
     width: 220px;
+    /* Remova ou limite transições aqui */
+    cursor: zoom-in;
+}
+
+.zoom {
+    display: none; /* Inicialmente oculto */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #acacac;
+    background-repeat: no-repeat;
+    background-size: 120%; /* Ajuste para o nível de zoom desejado */
+    pointer-events: none;
+}
+/*imagem do produto*/
+.smartphoneCartImg {
+    width: 190px;
+}
+
+.notebookCartImg {
+    width: 230px;
+}
+
+.accessoryCartImg {
+    width: 220px;
+}
+
+.redragonCobraCartImg {
+    width: 140px;
+}
+.webcamCartImg{
+    width: 165px;
 }
 
 .productRight {
@@ -40,7 +80,7 @@
     width: 50%;
     padding-inline:40px 20px;
     height: 90%;
-    gap: 50px;
+    gap: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,11 +98,51 @@
 .productPrice{
     font-size: 35px;
     font-weight: 700;
+    margin-top: 20px;
+    
     width: 100%;
     text-align: start;
 }
+.parcel{
+    text-align: start;
+    width: 100%;
+    margin-top: -25px;
+    color: #000000ba;
+
+}
 .paymentWrapper{
     display: flex;
+    align-items: center;
+    gap: 20px;
     width: 100%;
+    margin: auto 0;
 
+    .buyBtn{
+        width: 300px;
+        height: 40px;
+
+        border: 1px solid rgba(0, 0, 0, 0.388);
+        box-shadow: 1px 1px 5px #00000067;
+        border-radius: 5px;
+        background-color: var(--green);
+        cursor: pointer;
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-size: 18px;
+
+        &:hover{
+            background-color: #148314;
+            transition: all .5s ease;
+        }
+    }
+
+    .addCartIcon{
+        font-size: 40px;
+        cursor: pointer;
+        &:hover{
+            color: var(--green);
+            transition: all .5s ease;
+        }
+    }
 }

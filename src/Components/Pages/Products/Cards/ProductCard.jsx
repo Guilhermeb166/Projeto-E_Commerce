@@ -13,7 +13,9 @@ export default function ProductCard({ data,imgClass }) {
     const navigate = useNavigate();
 
     const handleCardClick = () => {
-        setSelectedProduct(data);
+        setSelectedProduct(data)
+        console.log('Produto selecionado:', data); // Verifica se o produto está correto
+        localStorage.setItem('selectedProduct', JSON.stringify(data));
         navigate('/ProductPage');
     };
 

@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { useState, useEffect } from "react";
 
 export default function Provider({ children }) {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState({});
   const [cartBtn,setCartBtn] = useState(false)
   const [showTable,setShowTable] = useState(true)
   const [cart, setCart] = useState(() => {
@@ -18,6 +18,8 @@ export default function Provider({ children }) {
 
   // Função para adicionar produtos ao carrinho
   const addToCart = (product) => {
+    if (!product) return; // Não faça nada se o produto for indefinido
+
     setCart((prevCart) => {
       const productExists = prevCart.some((item) => item.id === product.id);
       if (productExists) {
