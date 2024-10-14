@@ -74,16 +74,11 @@ export default function Cart() {
     return ''
   };
 
-  // Inicializar showTable diretamente com a largura da tela
+  // Atualiza o showTable quando a tela é redimensionada
   useEffect(() => {
-    const isWideScreen = window.innerWidth >= 481;
-    setShowTable(isWideScreen); // Define o estado inicial corretamente
-    console.log(`Initial load - Width: ${window.innerWidth}, showTable: ${isWideScreen}`);
-
     const handleResize = () => {
       const shouldShowTable = window.innerWidth >= 481;
       setShowTable(shouldShowTable);
-      console.log(`handleResize called - Width: ${window.innerWidth}, showTable: ${shouldShowTable}`);
     };
 
     window.addEventListener('resize', handleResize);
