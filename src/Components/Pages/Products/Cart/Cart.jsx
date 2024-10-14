@@ -74,19 +74,21 @@ export default function Cart() {
     return ''
   };
 
-  // Atualize o useEffect para verificar a largura ao carregar e em mudanças de tamanho
+  // Inicializar showTable diretamente com a largura da tela
   useEffect(() => {
+    const isWideScreen = window.innerWidth >= 481;
+    setShowTable(isWideScreen); // Define o estado inicial corretamente
+    console.log(`Initial load - Width: ${window.innerWidth}, showTable: ${isWideScreen}`);
+
     const handleResize = () => {
       const shouldShowTable = window.innerWidth >= 481;
       setShowTable(shouldShowTable);
-      console.log(`handleResize called. Width: ${window.innerWidth}, showTable: ${shouldShowTable}`);
+      console.log(`handleResize called - Width: ${window.innerWidth}, showTable: ${shouldShowTable}`);
     };
 
-    handleResize(); // Chama a função imediatamente ao carregar
+    window.addEventListener('resize', handleResize);
 
-    window.addEventListener('resize', handleResize); // Atualiza em mudanças de tamanho
-
-    return () => window.removeEventListener('resize', handleResize); // Limpa o listener ao desmontar
+    return () => window.removeEventListener('resize', handleResize);
   }, [setShowTable]);
 
 
