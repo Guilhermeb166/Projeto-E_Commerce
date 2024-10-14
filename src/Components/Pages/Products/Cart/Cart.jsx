@@ -74,21 +74,23 @@ export default function Cart() {
     return ''
   };
 
-  //useEffect para monitorar a largura da tela
-  useEffect(()=>{
-    const handleResize = ()=>{
-        if(window.innerWidth<481){
-          setShowTable(false)
-        }else {
-          setShowTable(true)
+  // Atualize o useEffect para verificar a largura ao carregar e em mudanças de tamanho
+  useEffect(() => {
+    const handleResize = () => {
+        if (window.innerWidth < 481) {
+            setShowTable(false);
+        } else {
+            setShowTable(true);
         }
-    }
-    handleResize()//função para carregar o componente
+    };
 
-    window.addEventListener('resize',handleResize)//adiciona o listener de resize
+    handleResize(); // Chama a função imediatamente ao carregar
 
-    return () => window.removeEventListener('resize', handleResize); //Limpa o listener ao desmontar
-},[setShowTable])
+    window.addEventListener('resize', handleResize); // Atualiza em mudanças de tamanho
+
+    return () => window.removeEventListener('resize', handleResize); // Limpa o listener ao desmontar
+  }, [setShowTable]);
+
 
   return (
     <main className={styles.cartContainer}>
