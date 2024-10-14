@@ -77,11 +77,9 @@ export default function Cart() {
   // Atualize o useEffect para verificar a largura ao carregar e em mudanças de tamanho
   useEffect(() => {
     const handleResize = () => {
-        if (window.innerWidth < 481) {
-            setShowTable(false);
-        } else {
-            setShowTable(true);
-        }
+      const shouldShowTable = window.innerWidth >= 481;
+      setShowTable(shouldShowTable);
+      console.log(`handleResize called. Width: ${window.innerWidth}, showTable: ${shouldShowTable}`);
     };
 
     handleResize(); // Chama a função imediatamente ao carregar
