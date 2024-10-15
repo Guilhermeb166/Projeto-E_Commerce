@@ -5,6 +5,7 @@
     padding: 5px 0px 0;
     position: relative;
     align-items: center;
+    user-select: none;
     cursor: pointer;
     height: 360px;
     width: 245px;
