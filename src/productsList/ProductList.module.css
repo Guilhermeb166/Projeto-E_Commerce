@@ -7,17 +7,28 @@
 .filterContainer{
     margin-top: 200px;
     width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin-left: 50px;
     user-select: none;
+
+    .filterSubTitle{
+        font-family: "Roboto", sans-serif;
+        text-align: start;
+        font-weight: 500;
+        letter-spacing: .5px;
+        margin-bottom: 10px;
+    }
 }
 .priceWrapper{
     display: flex;
     flex-direction: column;
-    
+    justify-content: space-between;    
     height: 140px;
     width: 100%;
     background-color: #fff;
-    padding: 20px 5px;
+    padding: 12px 5px 20px;
     border-radius: 10px;
 
     .priceRange{
@@ -38,14 +49,14 @@
             &::-webkit-slider-runnable-track {
                 height: 8px;
                 border-radius: 4px;
-                background: linear-gradient(to right, var(--red) calc(var(--slider-value, 0) * 1%), #ccc calc(var(--slider-value, 0) * 1%));
+                background: linear-gradient(to right, var(--green) calc(var(--slider-value, 0) * 1%), #ccc calc(var(--slider-value, 0) * 1%));
             }
         
             &::-webkit-slider-thumb {
                 appearance: none;
                 width: 16px;
                 height: 16px;
-                background-color: var(--red); /* Cor da bolinha */
+                background-color: var(--green); /* Cor da bolinha */
                 border-radius: 50%;
                 cursor: pointer;
                 margin-top: -4px; /* Ajuste da posição vertical da bolinha */
@@ -59,14 +70,14 @@
             }
         
             &::-moz-range-progress {
-                background-color: var(--red); /* Cor da faixa preenchida */
+                background-color: var(--green); /* Cor da faixa preenchida */
                 height: 8px;
                 border-radius: 4px;
             }
         
             /* Para Edge */
             &::-ms-fill-lower {
-                background-color: var(--red); /* Cor da faixa preenchida */
+                background-color: var(--green); /* Cor da faixa preenchida */
             }
         
             &::-ms-fill-upper {
@@ -111,6 +122,33 @@
         cursor: pointer;
         
     }
+}
+.categoryWrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    background-color: #fff;
+    padding: 12px 5px 20px;
+    border-radius: 10px;
+    
+    .categoryInputs{
+        display: flex;
+        align-items:center ;
+        gap:5px;
+
+        .inputCategory{
+            accent-color: var(--green);
+            cursor: pointer;
+            
+        }
+
+        & label{
+            font-size: 15px;
+            letter-spacing: .5px;
+        }
+    }
+    
 }
 .CardsContainer {
     display: flex;

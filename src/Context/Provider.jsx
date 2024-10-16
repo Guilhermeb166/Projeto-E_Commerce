@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 export default function Provider({ children }) {
   const [selectedProduct, setSelectedProduct] = useState({});
   const [cartBtn,setCartBtn] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(""); // Estado para a mensagem de erro
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [showTable,setShowTable] = useState(window.innerWidth >= 481);
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
@@ -81,7 +83,9 @@ export default function Provider({ children }) {
     cartBtn,
     setCartBtn,
     showTable,
-    setShowTable
+    setShowTable,
+    selectedCategories, setSelectedCategories,
+    errorMessage, setErrorMessage
   };
 
   return (
