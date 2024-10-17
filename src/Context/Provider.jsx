@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 export default function Provider({ children }) {
   const [selectedProduct, setSelectedProduct] = useState({});
   const [cartBtn,setCartBtn] = useState(false)
+  const [selectedFabricators,setSelectedFabricators] = useState([])
   const [errorMessage, setErrorMessage] = useState(""); // Estado para a mensagem de erro
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showTable,setShowTable] = useState(window.innerWidth >= 481);
@@ -85,7 +86,8 @@ export default function Provider({ children }) {
     showTable,
     setShowTable,
     selectedCategories, setSelectedCategories,
-    errorMessage, setErrorMessage
+    errorMessage, setErrorMessage,
+    selectedFabricators,setSelectedFabricators
   };
 
   return (

@@ -150,6 +150,35 @@
     }
     
 }
+.fabricatorWrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    background-color: #fff;
+    padding: 12px 5px 20px;
+    border-radius: 10px;
+
+    .inputFabricator{
+        accent-color: var(--green);
+        cursor: pointer;
+    }
+}
+.filterBtn{
+    background-color: var(--green);
+    border: 1px solid rgba(0, 0, 0, 0.408);
+    border-radius: 5px;
+    height: 30px;
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 1px;
+    box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.415);
+    cursor: pointer;
+
+    &:hover{
+        background-color: #158015;
+    }
+}
 .CardsContainer {
     display: flex;
     align-items: center;

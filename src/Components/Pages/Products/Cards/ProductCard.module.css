@@ -82,6 +82,7 @@
     margin-bottom: 10px;
     text-align: center;
     cursor: pointer;
+    user-select: none;
     display: none;
 
     &:hover{
