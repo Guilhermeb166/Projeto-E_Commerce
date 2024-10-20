@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+.ContactContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 800px;
+}
+
+.contactGifWrapper{
+    width: 50%;
+    display: flex;
+    height: 450px;
+    justify-content: end;
+    
+
+    .contactGif{
+        width: 500px;
+        border-radius: 10px 0 0 10px;
+    }
+}
+.contactFormWrapper{
+    width: 50%;
+    height: 450px;
+
+    .form{
+        background-color: #fff;
+        width: 500px;
+        height: 100%;
+        padding: 20px 5px 5px 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: start;
+        border-radius: 0 10px 10px 0;
+
+        & h2{
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: var(--red);
+            font-family: "Roboto Mono", monospace;
+            font-weight: 900;
+        }
+    }
+}
+
+.userEmailControl,.message{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    gap: 5px;
+}
+.inputEmail{
+    width: 95%;
+    min-width: 150px;
+    max-width: 600px;
+    outline: none;
+    padding: 10px 2px 10px 5px;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.514);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.455);
+    border-radius: 5px;
+}
+.messageInput{
+    outline: none;
+    width: 95%;
+    border: 1px solid rgba(0, 0, 0, 0.514);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.455);
+    border-radius: 5px;
+    padding: 10px 2px 10px 5px;
+    font-size: 16px;
+    height: 120px;
+    resize: none; /* Evita que o usuário redimensione manualmente */
+}
+.charCount{
+    position: absolute;
+    bottom: 5px;
+    right: 7%;
+    font-size: 13px;
+    color: #666;
+}
+.formBtn{
+    width: 50%;
+    background-color: var(--red);
+    color: #fff;
+    border: none;
+    padding: 7px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 700;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.562);
+    max-width: 500px;
+    cursor: pointer;
+    margin:0 auto;
+
+    &:hover{
+        background-color: #7c0309;
+    }
+}

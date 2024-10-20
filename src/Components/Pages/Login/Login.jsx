@@ -35,7 +35,7 @@ export default function Login() {
                         <div className={styles.inputWrapper}>
                             <label htmlFor="" className={styles.label}>Senha:</label>
                             <div className={styles.passwordWrapper}>
-                                <input type={showPassword?'text' :'password'} className={`${styles.inputPassword}`} placeholder='Digite sua senha...' />
+                                <input type={showPassword?'text' :'password'} className={`${styles.inputPassword}`} placeholder='Digite sua senha...' autoComplete='current-password'/>
                                 {showPassword ? <BiShow onClick={ShowPassword} className={styles.passwordBtn}/> : <BiHide onClick={ShowPassword} className={styles.passwordBtn}/>}
                             </div>
                         </div>
@@ -50,13 +50,13 @@ export default function Login() {
                     <form action="" className={`${styles.loginForm}`} ref={loginForm} style={{ display: 'none' }}>
                         <h1 className={styles.formTitle}>Entre na sua conta!</h1>
                         <div className={styles.inputWrapper}>
-                            <label htmlFor="email" className={styles.label}>E-mail:</label>
-                            <input type="text" name='email' id="email" className={`${styles.input}`} placeholder='Digite seu email...' autoComplete='off'/>
+                            <label htmlFor="emailLogin" className={styles.label}>E-mail:</label>
+                            <input type="text" name='email' id="emailLogin" className={`${styles.input}`} placeholder='Digite seu email...' autoComplete='off'/>
                         </div>
                         <div className={styles.inputWrapper}>
                             <label htmlFor="" className={styles.label}>Senha:</label>
                             <div className={styles.passwordWrapper}>
-                                <input type={showPassword?'text':'password'} className={`${styles.inputPassword}`} placeholder='Digite sua senha...'/>
+                                <input type={showPassword?'text':'password'} className={`${styles.inputPassword}`} placeholder='Digite sua senha...' autoComplete='current-password'/>
                                 {showPassword ? <BiShow onClick={ShowPassword} className={styles.passwordBtn}/> : <BiHide onClick={ShowPassword} className={styles.passwordBtn}/>}
                             </div>
                         </div>

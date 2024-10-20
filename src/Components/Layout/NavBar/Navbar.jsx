@@ -85,6 +85,13 @@ export default function Navbar() {
             setShowMenu(!showMenu);
         }
     }
+    const contactPage = ()=>{
+        navigate('/contact')
+
+        if (window.innerWidth < 481) {
+            setShowMenu(!showMenu);
+        }
+    }
 
     // Lógica para o menu hamburger
     const toggleMenu = () => {
@@ -115,7 +122,7 @@ export default function Navbar() {
                 <li className={styles.link} onClick={() => handleCategoryClick('smartphone')}   >Celulares</li>
                 <li className={styles.link} onClick={() => handleCategoryClick('notebook')}>Computadores</li>
                 <li className={styles.link} onClick={() => handleCategoryClick('Acessorios')}>Acessórios</li>
-                <li className={styles.link}>Contato</li>
+                <li className={styles.link} onClick={contactPage}>Contato</li>
             </ul>
             <div className={styles.navRight}>
 
@@ -145,7 +152,7 @@ export default function Navbar() {
                     <li className={styles.menuLink} onClick={() => handleCategoryClick('smartphone')}>Celulares</li>
                     <li className={styles.menuLink}  onClick={() => handleCategoryClick('notebook')}>Computadores</li>
                     <li className={styles.menuLink}  onClick={() => handleCategoryClick('Acessorios')}>Acessórios</li>
-                    <li className={styles.menuLink}>Contato</li>
+                    <li className={styles.menuLink} onClick={contactPage}>Contato</li>
                     
                 </ul>
             </div>
