@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Adicione o useNavigate
 import phones from '../../../productsList/Phones';
 import notebooks from '../../../productsList/Notebooks';
 import derivados from '../../../productsList/Derivados';
@@ -10,48 +10,40 @@ import formatCurrency from '../../patterns/FormatCurrency';
 import Context from '../../../Context/Context';
 
 export default function SearchResultsPage() {
-    const location = useLocation();//Obtém informações da URL, incluindo parâmetros de busca.
-    const { selectedCategories, setSelectedCategories,selectedFabricators,setSelectedFabricators , setErrorMessage} = useContext(Context)
-    const query = new URLSearchParams(location.search).get('q');//Armazena o termo de busca (q) da URL.
-    const [results, setResults] = useState([]);//Lista de produtos filtrados que será exibida.
-    const [inputPrice,setInputPrice] = useState(true)//Alterna entre entrada de preço manual e slider.
-    const [maxPrice, setMaxPrice] = useState(0); // Estado para o valor máximo do slider
-    const [minPrice, setMinPrice] = useState(""); // Estado para o valor mínimo
+    const location = useLocation();
+    const navigate = useNavigate(); // Adicione isso para usar o hook de navegação
+    const { selectedCategories, setSelectedCategories, selectedFabricators,setErrorMessage } = useContext(Context);
+    const query = new URLSearchParams(location.search).get('q');
+    const [results, setResults] = useState([]);
+    const [inputPrice, setInputPrice] = useState(true);
+    const [maxPrice, setMaxPrice] = useState(0);
+    const [minPrice, setMinPrice] = useState(0);
 
     useEffect(() => {
-        if (query) {//Se query for null, undefined ou uma string vazia, o código não faz nada.
-            const lowerCaseQuery = query.toLowerCase();//Cria uma versão do termo de busca em minúsculas, usando toLowerCase().
-            const allProducts = [...phones, ...notebooks, ...derivados];//Combina todos os produtos em uma lista
+        if (query) {
+            const lowerCaseQuery = query.toLowerCase();
+            const allProducts = [...phones, ...notebooks, ...derivados];
 
             const filteredProducts = allProducts.filter(product => {
-                // Utiliza o método filter para criar uma nova lista contendo apenas os produtos que atendem ao critério de busca.
-                const productName = product.name.toLowerCase();//  Converte o nome do produto (product.name) para minúsculas.
+                const productName = product.name.toLowerCase();
                 const productCategory = Array.isArray(product.category)
                     ? product.category.join(' ').toLowerCase()
                     : (product.category ? product.category.toLowerCase() : "");
-                    //Processa a categoria do produto, transformando-a em uma string única e em minúsculas, caso seja necessário.
-
-                    /*Array.isArray(product.category): Verifica se a categoria é um array. Se for:
-                    product.category.join(' '): Converte o array de categorias em uma string única, separada por espaços, para facilitar a busca. /  Se category for uma string (não um array), ela é convertida para minúsculas. */
 
                 return (
                     (productName.includes(lowerCaseQuery) || productCategory.includes(lowerCaseQuery))
-                    //productName.includes(lowerCaseQuery): O nome do produto contém o termo de busca. Se sim, o produto é incluído no resultado filtrado.
-                    //productCategory.includes(lowerCaseQuery): Se o nome não coincidir, verifica-se se a categoria do produto contém o termo de busca.
                 );
             });
+
             setResults(filteredProducts);
-            //Atualiza o estado results com os produtos que atendem ao termo de busca.
-            //Após o filtro, filteredProducts contém apenas os produtos cujo nome ou categoria incluem o termo de busca fornecido.
         }
-    }, [query, maxPrice]);
+    }, [query]);
 
     const toggleCategory = (category) => {
-        //Aqui estamos criando uma função chamada toggleCategory. Essa função vai receber um parâmetro chamado category, que representa a categoria que o usuário quer selecionar ou desmarcar.
         setSelectedCategories(prevCategories =>
-            prevCategories.includes(category)//Este pedaço verifica se a categoria que o usuário clicou já está na lista de categorias selecionadas.
-                ? prevCategories.filter(item => item !== category) // Se a categoria já estiver na lista (prevCategories), então a função filter é usada para criar uma nova lista que não inclui essa categoria. Ou seja, estamos removendo a categoria que o usuário clicou.
-                : [...prevCategories, category] // Adiciona se não estiver selecionado
+            prevCategories.includes(category)
+                ? prevCategories.filter(item => item !== category) 
+                : [...prevCategories, category] 
         );
     };
 
@@ -60,8 +52,7 @@ export default function SearchResultsPage() {
         e.target.style.setProperty('--slider-value', sliderValue);
         setMaxPrice(Number(e.target.value)); // Atualiza o valor máximo com base no input do slider
     };
-    
-    const handleMinPriceChange = (e) => {
+    /*const handleMinPriceChange = (e) => {
         const value = e.target.value;
         // Validação para garantir que o valor mínimo seja válido
         if (value.length > 8) {
@@ -73,53 +64,27 @@ export default function SearchResultsPage() {
             setErrorMessage("O valor mínimo deve ser menor que o valor máximo.");
         } else {
             setErrorMessage(""); // Limpa a mensagem de erro se for válido
-            setMinPrice(value);
+            // Atualiza o estado de minPrice, garantindo que o 0 inicial seja removido ao digitar outro número
+            if (value === "") {
+                setMinPrice(0); // Define como 0 se o campo estiver vazio
+            } else {
+                setMinPrice(Number(value)); // Atualiza com o valor digitado
+            }
         }
-    };
-
-    const handleInputPrice = ()=>{
-        setInputPrice(!inputPrice)
-    }
-
-    const handleFabricatorItems = () => {
-        const fabricatorMap = {
-            Celulares: ['Samsung', 'Apple', 'Xiaomi'],
-            Notebooks: ['Dell', 'HP', 'Lenovo'],
-            Mouse: ['Logitech', 'Razer', 'Microsoft'],
-            Teclados: ['Corsair', 'HyperX', 'Razer']
-        };
-    
-        const toggleFabricator = (fabricator) => {
-            setSelectedFabricators(prevFabricators =>
-                prevFabricators.includes(fabricator)
-                    ? prevFabricators.filter(item => item !== fabricator)
-                    : [...prevFabricators, fabricator]
-            );
-        };
-    
-        const selectedFabricatorItems = selectedCategories.flatMap(category => fabricatorMap[category] || []);
-        return selectedFabricatorItems.length > 0 ? (
-            selectedFabricatorItems.map(fabricator => (
-                <div key={fabricator} className={styles.fabricatorInput}>
-                    <input
-                        type="checkbox"
-                        id={fabricator}
-                        className={styles.inputFabricator}
-                        checked={selectedFabricators.includes(fabricator)}
-                        onChange={() => toggleFabricator(fabricator)}
-                    />
-                    <label htmlFor={fabricator}>{fabricator}</label>
-                </div>
-            ))
-        ) : (
-            <p> </p>
-        );
-    };
+    };*/
 
     const applyFilters = () => {
+
+        // Verifica se o valor mínimo é maior que o valor máximo e exibe uma mensagem
+        if (Number(minPrice) > Number(maxPrice)) {
+            setErrorMessage("O valor mínimo deve ser menor que o valor máximo.");
+            return; // Interrompe a execução caso os valores estejam incorretos
+        }
+
         const lowerCaseQuery = query ? query.toLowerCase() : "";
         const allProducts = [...phones, ...notebooks, ...derivados];
     
+        // Filtro de produtos
         const filteredProducts = allProducts.filter(product => {
             const productName = product.name.toLowerCase();
             const productCategory = Array.isArray(product.category)
@@ -128,12 +93,11 @@ export default function SearchResultsPage() {
             const productPrice = product.price;
             const productFabricator = product.category ? product.category.join(' ') : "";
     
-            const matchesQuery = productName.includes(lowerCaseQuery) || productCategory.includes(lowerCaseQuery);
+            // Combina os filtros
+            const matchesQuery = !lowerCaseQuery || productName.includes(lowerCaseQuery) || productCategory.includes(lowerCaseQuery);
             const matchesCategory = selectedCategories.length === 0 || 
                 selectedCategories.some(category =>
-                    product.category.includes(category) ||
-                    (category === 'Mouse' && product.category.includes('Derivados')) ||
-                    (category === 'Teclados' && product.category.includes('Derivados'))
+                    product.category.includes(category)
                 );
             const matchesPrice = (!minPrice || productPrice >= minPrice) && (!maxPrice || productPrice <= maxPrice);
             const matchesFabricator = selectedFabricators.length === 0 ||
@@ -142,8 +106,26 @@ export default function SearchResultsPage() {
             return matchesQuery && matchesCategory && matchesPrice && matchesFabricator;
         });
     
+        // Atualiza os resultados
         setResults(filteredProducts);
+    
+        // Atualiza a URL com a nova categoria selecionada
+        const categoryParam = selectedCategories.length > 0 ? selectedCategories.join(',') : '';
+        const searchParams = new URLSearchParams();
+        if (categoryParam) {
+            searchParams.set('category', categoryParam);  // Substitui a categoria
+        }
+        if (minPrice) {
+            searchParams.set('minPrice', minPrice);
+        }
+        if (maxPrice) {
+            searchParams.set('maxPrice', maxPrice);
+        }
+    
+        // Atualiza a URL apenas quando clicar em Filtrar
+        navigate(`/search?${searchParams.toString()}`);
     };
+    
 
     return (
         <section className={styles.SearchResultsPageContainer}>
@@ -153,7 +135,7 @@ export default function SearchResultsPage() {
                     {inputPrice ? 
                         <div>
                             <div className={styles.priceRange}>
-                                <span>{formatCurrency(maxPrice, 'BRL')}</span> {/* Exibe o valor formatado */}
+                            <span>{formatCurrency(maxPrice, 'BRL')}</span> {/* Exibe o valor formatado */}
                                 <input
                                     type="range"
                                     min="0"
@@ -163,81 +145,84 @@ export default function SearchResultsPage() {
                                     onChange={handlePriceChange}
                                     className={styles.customSlider}
                                 />
-                            
                             </div>
-                            <button onClick={(e) => { e.preventDefault(); handleInputPrice(); }} className={styles.inputPriceBtn}>Digitar Manualmente</button>
+                            <button onClick={(e) => { e.preventDefault(); setInputPrice(false); }} className={styles.inputPriceBtn}>Digitar Manualmente</button>
                         </div>
                     :   <div>
-                        <div className={styles.priceManual}>
-                        <input 
-                            type="number" 
-                            name="" 
-                            id="" 
-                            className={styles.inputPriceNumber} 
-                            value={minPrice || ""} // Garante que o campo fique vazio se não houver valor
-                            placeholder="mínimo" 
-                            onChange={handleMinPriceChange}
-                        />
-                        <span>até</span>
-                        <input 
-                            type="number" 
-                            name="" 
-                            id="" 
-                            className={styles.inputPriceNumber} 
-                            value={maxPrice || ""} // Garante que o campo fique vazio se não houver valor
-                            placeholder="máximo" 
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                // Limita o valor a 8 dígitos
-                                if (value.length <= 8) {
-                                    setMaxPrice(value);
-                                }
-                            }} // Atualiza o valor máximo manualmente
-                            max='50000'
-                            maxLength='8'
-                        />
+                            <div className={styles.priceManual}>
+                            <input 
+                                type="text" 
+                                className={styles.inputPriceNumber} 
+                                value={minPrice || ""} 
+                                placeholder="mínimo" 
+                                onChange={(e) => {
+                                    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+                                    if (value.length > 7) {
+                                        value = value.slice(0, 7); // Limita a 5 dígitos antes da vírgula
+                                    }
+                                    const formattedValue = (Number(value) / 100).toFixed(2); // Adiciona duas casas decimais
+                                    setMinPrice(formattedValue);
+                                }}
+                            />
+
+                            <span>até</span>
+
+                            <input 
+                                type="text" 
+                                className={styles.inputPriceNumber} 
+                                value={maxPrice || ""} 
+                                placeholder="máximo" 
+                                onChange={(e) => {
+                                    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+                                    if (value.length > 7) {
+                                        value = value.slice(0, 7); // Limita a 5 dígitos antes da vírgula
+                                    }
+                                    const formattedValue = (Number(value) / 100).toFixed(2); // Adiciona duas casas decimais
+                                    if (formattedValue <= 50000) {
+                                        setMaxPrice(formattedValue);
+                                    }
+                                }}
+                                max='50000'
+                            />
                             </div>
-                            <button onClick={(e) => { e.preventDefault(); handleInputPrice(); }} className={styles.inputPriceBtn}>Escolher com a barra</button>
-                    </div>
+                            <button onClick={(e) => { e.preventDefault(); setInputPrice(true); }} className={styles.inputPriceBtn}>Escolher com a barra</button>
+                        </div>
                     }
                 </div>
+
                 <div className={styles.categoryWrapper}>
                     <p className={styles.filterSubTitle}>Categoria</p>
                     <div className={styles.categoryInputs}>
                         <input type="checkbox" name="Celulares" id="Celulares" className={styles.inputCategory} 
                         checked={selectedCategories.includes('Celulares')}
-                        onChange={() => toggleCategory('Celulares')}/>
+                        onChange={() => toggleCategory('Celulares')} />
                         <label htmlFor="Celulares">Celulares</label>
-                    </div>                         
+                    </div>
                     <div className={styles.categoryInputs}>
                         <input type="checkbox" name="Notebooks" id="Notebooks" className={styles.inputCategory} 
-                        checked={selectedCategories.includes ('Notebooks')}
-                        onChange={() => toggleCategory('Notebooks')}/>
+                        checked={selectedCategories.includes('Notebooks')}
+                        onChange={() => toggleCategory('Notebooks')} />
                         <label htmlFor="Notebooks">Notebooks</label>
-                    </div>                         
+                    </div>
                     <div className={styles.categoryInputs}>
                         <input type="checkbox" name="Mouse" id="Mouse" className={styles.inputCategory} 
                         checked={selectedCategories.includes('Mouse')}
-                        onChange={() => toggleCategory('Mouse')}/>
+                        onChange={() => toggleCategory('Mouse')} />
                         <label htmlFor="Mouse">Mouse</label>
-                    </div>                       
+                    </div>
                     <div className={styles.categoryInputs}>
                         <input type="checkbox" name="Teclados" id="Teclados" className={styles.inputCategory} 
                         checked={selectedCategories.includes('Teclados')}
-                        onChange={() => toggleCategory('Teclados')}/>
+                        onChange={() => toggleCategory('Teclados')} />
                         <label htmlFor="Teclados">Teclados</label>
                     </div>
-                                           
                 </div>
-                <div className={styles.fabricatorWrapper}>
-                <p className={styles.filterSubTitle}>Fabricante</p>
-                {handleFabricatorItems()}
-                </div>
+
                 <button onClick={(e) => { e.preventDefault(); applyFilters(); }} className={styles.filterBtn}>Filtrar</button>
             </form>
 
             <div className={styles.CardsContainer}>
-                <h1 className={styles.searchText}>Resultados de pesquisa para: {query}</h1>
+                {/*<h1 className={styles.searchText}>Resultados de pesquisa para: {query}</h1>*/}
                 <div className={styles.ProductsCards}>
                     {results.length > 0 ? (
                         results.map(product => (
