@@ -12,7 +12,7 @@ import Context from '../../../Context/Context';
 export default function SearchResultsPage() {
     const location = useLocation();
     const navigate = useNavigate(); // Adicione isso para usar o hook de navegação
-    const { selectedCategories, setSelectedCategories, selectedFabricators,setErrorMessage } = useContext(Context);
+    const { selectedCategories, setSelectedCategories } = useContext(Context);
     const query = new URLSearchParams(location.search).get('q');
     const [results, setResults] = useState([]);
     const [inputPrice, setInputPrice] = useState(true);
@@ -52,68 +52,37 @@ export default function SearchResultsPage() {
         e.target.style.setProperty('--slider-value', sliderValue);
         setMaxPrice(Number(e.target.value)); // Atualiza o valor máximo com base no input do slider
     };
-    /*const handleMinPriceChange = (e) => {
-        const value = e.target.value;
-        // Validação para garantir que o valor mínimo seja válido
-        if (value.length > 8) {
-            setErrorMessage("O valor mínimo não pode ter mais de 8 dígitos.");
-        }else if(value<0){
-            setErrorMessage("O valor mínimo não pode ser menor que 0.");
-        }
-         else if (Number(value) > maxPrice) {
-            setErrorMessage("O valor mínimo deve ser menor que o valor máximo.");
-        } else {
-            setErrorMessage(""); // Limpa a mensagem de erro se for válido
-            // Atualiza o estado de minPrice, garantindo que o 0 inicial seja removido ao digitar outro número
-            if (value === "") {
-                setMinPrice(0); // Define como 0 se o campo estiver vazio
-            } else {
-                setMinPrice(Number(value)); // Atualiza com o valor digitado
-            }
-        }
-    };*/
 
     const applyFilters = () => {
-
-        // Verifica se o valor mínimo é maior que o valor máximo e exibe uma mensagem
-        if (Number(minPrice) > Number(maxPrice)) {
-            setErrorMessage("O valor mínimo deve ser menor que o valor máximo.");
-            return; // Interrompe a execução caso os valores estejam incorretos
-        }
-
-        const lowerCaseQuery = query ? query.toLowerCase() : "";
         const allProducts = [...phones, ...notebooks, ...derivados];
+        
+        // Se os preços forem inválidos, exibe mensagem de erro
+        if (Number(minPrice) > Number(maxPrice)) {
+            alert("O valor mínimo deve ser menor que o valor máximo.");
+            return;
+        }
     
         // Filtro de produtos
         const filteredProducts = allProducts.filter(product => {
-            const productName = product.name.toLowerCase();
-            const productCategory = Array.isArray(product.category)
-                ? product.category.join(' ').toLowerCase()
-                : (product.category ? product.category.toLowerCase() : "");
             const productPrice = product.price;
-            const productFabricator = product.category ? product.category.join(' ') : "";
     
-            // Combina os filtros
-            const matchesQuery = !lowerCaseQuery || productName.includes(lowerCaseQuery) || productCategory.includes(lowerCaseQuery);
-            const matchesCategory = selectedCategories.length === 0 || 
+            // Combina os filtros de categoria e preço
+            const matchesCategory = selectedCategories.length === 0 ||
                 selectedCategories.some(category =>
                     product.category.includes(category)
                 );
             const matchesPrice = (!minPrice || productPrice >= minPrice) && (!maxPrice || productPrice <= maxPrice);
-            const matchesFabricator = selectedFabricators.length === 0 ||
-                selectedFabricators.some(fabricator => productFabricator.includes(fabricator));
     
-            return matchesQuery && matchesCategory && matchesPrice && matchesFabricator;
+            return matchesCategory && matchesPrice; // Remove a query do filtro
         });
     
         // Atualiza os resultados
         setResults(filteredProducts);
     
-        // Atualiza a URL com a nova categoria selecionada
-        const categoryParam = selectedCategories.length > 0 ? selectedCategories.join(',') : '';
+        // Atualiza a URL com as categorias selecionadas e faixa de preço (sem a query)
         const searchParams = new URLSearchParams();
-        if (categoryParam) {
-            searchParams.set('category', categoryParam);  // Substitui a categoria
+        if (selectedCategories.length > 0) {
+            searchParams.set('category', selectedCategories.join(','));
         }
         if (minPrice) {
             searchParams.set('minPrice', minPrice);
@@ -122,9 +91,11 @@ export default function SearchResultsPage() {
             searchParams.set('maxPrice', maxPrice);
         }
     
-        // Atualiza a URL apenas quando clicar em Filtrar
+        // Navega para a URL com os filtros aplicados, sem a query
         navigate(`/search?${searchParams.toString()}`);
     };
+    
+    
     
 
     return (
@@ -211,9 +182,9 @@ export default function SearchResultsPage() {
                         <label htmlFor="Mouse">Mouse</label>
                     </div>
                     <div className={styles.categoryInputs}>
-                        <input type="checkbox" name="Teclados" id="Teclados" className={styles.inputCategory} 
-                        checked={selectedCategories.includes('Teclados')}
-                        onChange={() => toggleCategory('Teclados')} />
+                        <input type="checkbox" name="Keyboard" id="Keyboard" className={styles.inputCategory} 
+                        checked={selectedCategories.includes('Keyboard')}
+                        onChange={() => toggleCategory('Keyboard')} />
                         <label htmlFor="Teclados">Teclados</label>
                     </div>
                 </div>

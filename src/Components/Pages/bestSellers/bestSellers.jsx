@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import phones from '../../../productsList/Phones';
 import notebooks from '../../../productsList/Notebooks';
 import derivados from '../../../productsList/Derivados';
-import styles from '../../../productsList/ProductList.module.css';
+import styles from './bestSellers.module.css';
 import getProductImgClass from '../../patterns/ReusableFunctions';
 import ProductCard from '../Products/Cards/ProductCard';
 
@@ -23,10 +23,10 @@ export default function BestSellersPage() {
 
     return (
         <div>
-            <div className={styles.CardsContainer}>
+            <div className={styles.bestSellersContainer}>
                 <h1 className={styles.searchText}>Top 5 Produtos Mais Vendidos por Categoria</h1>
                 {bestSellers.length > 0 ? (
-                    <div className={styles.ProductsCards}>
+                    <div className={styles.bestSellersCards}>
                         {bestSellers.map(product => (
                             <ProductCard key={product.id} data={product} imgClass={`${styles.productImg} ${getProductImgClass(product)}`}/>
                             
