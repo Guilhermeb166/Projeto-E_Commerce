@@ -9,6 +9,7 @@ import BestSellersPage from "./Components/Pages/bestSellers/bestSellers";
 import ProductPage from "./Components/Pages/Products/ProductPage/ProductPage";
 import Cart from "./Components/Pages/Products/Cart/Cart";
 import Contact from "./Components/Pages/Contact/Contact";
+import Payment from "./Components/Pages/Payment/Payment";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/best-sellers" element={<BestSellersPage />} />
           <Route path="/productPage" element={<ProductPage />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />

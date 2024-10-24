@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // Adicione o useNavigate
 import phones from '../../../productsList/Phones';
 import notebooks from '../../../productsList/Notebooks';
@@ -10,6 +10,8 @@ import formatCurrency from '../../patterns/FormatCurrency';
 import Context from '../../../Context/Context';
 
 export default function SearchResultsPage() {
+    const sliderRef = useRef(null); // Referência para o slider
+    const btnFilter = useRef(null); // Referência para o botão
     const location = useLocation();
     const navigate = useNavigate(); // Adicione isso para usar o hook de navegação
     const { selectedCategories, setSelectedCategories } = useContext(Context);
@@ -53,6 +55,19 @@ export default function SearchResultsPage() {
         setMaxPrice(Number(e.target.value)); // Atualiza o valor máximo com base no input do slider
     };
 
+    const resetFilters = () => {
+        setSelectedCategories([]); // Limpa as categorias
+        setMaxPrice(0); // Reseta o preço máximo
+        setMinPrice(0); // Reseta o preço mínimo
+        setInputPrice(true); // Volta para o modo de input com slider
+
+        // Reseta o valor do slider visualmente e o estilo de preenchimento
+        if (sliderRef.current) {
+            sliderRef.current.value = sliderRef.current.min; // Reseta o valor do slider
+            sliderRef.current.style.setProperty('--slider-value', '0'); // Reseta o estilo de preenchimento
+        }
+    };
+
     const applyFilters = () => {
         const allProducts = [...phones, ...notebooks, ...derivados];
         
@@ -93,11 +108,11 @@ export default function SearchResultsPage() {
     
         // Navega para a URL com os filtros aplicados, sem a query
         navigate(`/search?${searchParams.toString()}`);
+
+        // Reseta os filtros após aplicar
+        resetFilters();
     };
     
-    
-    
-
     return (
         <section className={styles.SearchResultsPageContainer}>
             <form className={styles.filterContainer}>
@@ -106,12 +121,14 @@ export default function SearchResultsPage() {
                     {inputPrice ? 
                         <div>
                             <div className={styles.priceRange}>
-                            <span>{formatCurrency(maxPrice, 'BRL')}</span> {/* Exibe o valor formatado */}
+                                <span>{formatCurrency(maxPrice, 'BRL')}</span> {/* Exibe o valor formatado */}
                                 <input
                                     type="range"
                                     min="0"
                                     max="50000"
+                                    ref={sliderRef} // Associa o useRef ao input do slider
                                     step="0.10" // Incrementos de 0,10
+                                    id="priceRangeSlider"
                                     value={maxPrice}
                                     onChange={handlePriceChange}
                                     className={styles.customSlider}
@@ -121,40 +138,40 @@ export default function SearchResultsPage() {
                         </div>
                     :   <div>
                             <div className={styles.priceManual}>
-                            <input 
-                                type="text" 
-                                className={styles.inputPriceNumber} 
-                                value={minPrice || ""} 
-                                placeholder="mínimo" 
-                                onChange={(e) => {
-                                    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
-                                    if (value.length > 7) {
-                                        value = value.slice(0, 7); // Limita a 5 dígitos antes da vírgula
-                                    }
-                                    const formattedValue = (Number(value) / 100).toFixed(2); // Adiciona duas casas decimais
-                                    setMinPrice(formattedValue);
-                                }}
-                            />
+                                <input 
+                                    type="text" 
+                                    className={styles.inputPriceNumber} 
+                                    value={minPrice || ""} 
+                                    placeholder="mínimo" 
+                                    onChange={(e) => {
+                                        let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+                                        if (value.length > 7) {
+                                            value = value.slice(0, 7); // Limita a 5 dígitos antes da vírgula
+                                        }
+                                        const formattedValue = (Number(value) / 100).toFixed(2); // Adiciona duas casas decimais
+                                        setMinPrice(formattedValue);
+                                    }}
+                                />
 
-                            <span>até</span>
+                                <span>até</span>
 
-                            <input 
-                                type="text" 
-                                className={styles.inputPriceNumber} 
-                                value={maxPrice || ""} 
-                                placeholder="máximo" 
-                                onChange={(e) => {
-                                    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
-                                    if (value.length > 7) {
-                                        value = value.slice(0, 7); // Limita a 5 dígitos antes da vírgula
-                                    }
-                                    const formattedValue = (Number(value) / 100).toFixed(2); // Adiciona duas casas decimais
-                                    if (formattedValue <= 50000) {
-                                        setMaxPrice(formattedValue);
-                                    }
-                                }}
-                                max='50000'
-                            />
+                                <input 
+                                    type="text" 
+                                    className={styles.inputPriceNumber} 
+                                    value={maxPrice || ""} 
+                                    placeholder="máximo" 
+                                    onChange={(e) => {
+                                        let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+                                        if (value.length > 7) {
+                                            value = value.slice(0, 7); // Limita a 5 dígitos antes da vírgula
+                                        }
+                                        const formattedValue = (Number(value) / 100).toFixed(2); // Adiciona duas casas decimais
+                                        if (formattedValue <= 50000) {
+                                            setMaxPrice(formattedValue);
+                                        }
+                                    }}
+                                    max='50000'
+                                />
                             </div>
                             <button onClick={(e) => { e.preventDefault(); setInputPrice(true); }} className={styles.inputPriceBtn}>Escolher com a barra</button>
                         </div>
@@ -189,11 +206,10 @@ export default function SearchResultsPage() {
                     </div>
                 </div>
 
-                <button onClick={(e) => { e.preventDefault(); applyFilters(); }} className={styles.filterBtn}>Filtrar</button>
+                <button onClick={(e) => { e.preventDefault(); applyFilters(); }} className={styles.filterBtn} ref={btnFilter}>Filtrar</button>
             </form>
 
             <div className={styles.CardsContainer}>
-                {/*<h1 className={styles.searchText}>Resultados de pesquisa para: {query}</h1>*/}
                 <div className={styles.ProductsCards}>
                     {results.length > 0 ? (
                         results.map(product => (
