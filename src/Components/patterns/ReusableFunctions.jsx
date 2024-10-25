@@ -1,4 +1,5 @@
 import styles from '../../productsList/ProductList.module.css'
+
 // Função para adicionar a classe notebookImg se a categoria for Notebook
 const getProductImgClass = (product) => {
     if (Array.isArray(product.category)) {
@@ -21,5 +22,8 @@ const getProductImgClass = (product) => {
     
     return''
 };
+
+
+
 
 export default getProductImgClass

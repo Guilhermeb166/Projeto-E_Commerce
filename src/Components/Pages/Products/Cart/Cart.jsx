@@ -86,6 +86,9 @@ export default function Cart() {
     return () => window.removeEventListener('resize', handleResize);
   }, [setShowTable]);
 
+  const paymentPage = ()=>{
+    navigate('/payment')
+  }
 
   return (
     <main className={styles.cartContainer}>
@@ -172,7 +175,7 @@ export default function Cart() {
           <div className={styles.cartResume}>
             <h1 className={styles.cartResumeTitle}>Resumo do Carrinho</h1>
             <p className={styles.totalPrice}>Total: {formatCurrency(totalPrice(), 'BRL')}</p>
-            <button className={styles.paymentBtn}>Forma de Pagamento</button>
+            <button className={styles.paymentBtn} onClick={paymentPage}>Forma de Pagamento</button>
           </div>
         </section>
       )}
