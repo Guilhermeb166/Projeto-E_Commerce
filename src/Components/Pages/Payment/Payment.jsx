@@ -47,8 +47,8 @@ export default function Payment(){
                         <input type="text" placeholder='celular com DDD'  className={styles.inputForm}/>
                         <input type="text" placeholder='Endereço (rua e número)'  className={styles.inputForm}/>
                         <input type="text" placeholder='Bairro'  className={styles.inputForm}/>
-                        <select name="estados" id="estados" onChange={handleEstadoChange} className={styles.inputForm}>
-                            <option value="" disabled selected>Estados</option>
+                        <select name="estados" id="estados" onChange={handleEstadoChange} className={styles.selectForm}defaultValue=''>
+                            <option value="" disabled>Estados</option>
                             <option value="CE">Ceará</option>
                             <option value="SP">São Paulo</option>
                             <option value="RJ">Rio de Janeiro</option>
@@ -56,7 +56,7 @@ export default function Payment(){
 
                         {/* Select para escolher a cidade, que muda com base no estado selecionado */}
                         {estadoSelecionado && (
-                            <select name="cidades" id="cidades" className={styles.inputForm}>
+                            <select name="cidades" id="cidades" className={styles.selectForm}>
                                 <option value="" disabled selected>Cidades</option>
                                 {cidades.map((cidade, index) => (
                                     <option key={index} value={cidade}>{cidade}</option>
@@ -76,15 +76,57 @@ export default function Payment(){
                             </div>
                         </div>
 
-                        <div>
+                        <div className={styles.paymentOptionsWrapper}>
                             { metodoPagamento === 'cartao'?(
-                                <h1>é cartão</h1>
+
+                            <div className={styles.PaymentCardInfo}> 
+                                <input type="number" 
+                                placeholder="Número do cartão" 
+                                className={styles.inputFormCardInfo} 
+                                maxLength={16}
+                                onInput={(e)=>{
+                                    let value = e.target.value
+                                    e.target.value = value.slice(0, 16); // Limita a 5 caracteres (MM/AA)
+                                }}
+                                /> 
+                                <div> 
+                                    <input type="text" 
+                                        placeholder="Validade (Mês/Ano)" 
+                                        className={styles.inputFormCardInfo} 
+                                        maxLength="5" 
+                                        onInput={(e) => {
+                                            let value = e.target.value.replace(/\D/g, ''); // Remove qualquer caractere que não seja número
+                                            if (value.length > 2) {
+                                                value = value.slice(0, 2) + '/' + value.slice(2); // Adiciona a barra após os primeiros 2 dígitos
+                                            }
+                                            e.target.value = value.slice(0, 5); // Limita a 5 caracteres (MM/AA)
+                                        }}
+                                    />
+                                    <input type="number"
+                                    placeholder="CVV" 
+                                    className={styles.inputFormCardInfo}
+                                    maxLength={3}
+                                    onInput={(e)=>{
+                                        let value = e.target.value
+                                        e.target.value = value.slice(0, 3); // Limita a 5 caracteres (MM/AA)
+                                    }}
+                                     />
+                                </div>
+                                <select name='Bandeiras' id='Bandeiras' className={styles.selectForm} defaultValue="">
+                                    <option value="" disabled >Qual  a bandeira do seu cartão?</option>
+                                    <option value="MC">MasterCard</option>
+                                    <option value="VS">Visa</option>
+                                    <option value="HC">HiperCard</option>
+                                    <option value="EL">Elo</option>
+                                    <option value="AE">American Express</option>
+                                </select>
+                        </div>
                             ): metodoPagamento === 'pix' ? (
                                 <h1>é pix</h1>
                             ) : (
                                 <p> </p> 
                             )}
-                        </div>
+                    </div>
                         
             </form>
 

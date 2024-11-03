@@ -1,3 +1,12 @@
+/* removem os botões de incremento e decremento nos navegadores WebKit (como Chrome e Safari) e também em navegadores que usam o motor Gecko (como Firefox).*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button,input[type="number"] {
+    -webkit-appearance: none;/* Para navegadores baseados em WebKit, como Chrome e Safari */
+    -moz-appearance: textfield; /* Para navegadores baseados em Gecko, como Firefox */
+    appearance: none; /* Para navegadores modernos que suportam a versão padrão */
+    margin: 0;
+}
+
 .paymentContainer{
     margin-top: 130px;
     height: 800px;
@@ -50,3 +59,53 @@
     background-color: var(--green);
     color: #fff;
 }
+.paymentOptionsWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.PaymentCardInfo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 19px;
+
+    &>div{
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        gap: 15%;
+        max-width: 1000px;
+
+    }
+    .inputFormCardInfo{
+        outline: none;
+        border: 1px solid rgba(0, 0, 0, 0.456);
+        box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.271);
+        padding:5px;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 1000px;
+    }
+    
+}
+.selectForm{
+        outline: none;
+        cursor: pointer;
+        border: 1px solid rgba(0, 0, 0, 0.456);
+        box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.271);
+        padding:5px;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 1000px;
+
+        &>option{
+            background-color: #f0f0f0; /* Cor de fundo */
+            color: #333; /* Cor do texto */
+            padding: 10px; /* Tamanho interno (não suportado em todos os navegadores) */
+            cursor: pointer;
+        }
+}
+
+   
