@@ -3,6 +3,7 @@ import Context from '../../../../Context/Context'
 import { useContext, useEffect,useRef  } from 'react'
 import formatCurrency from '../../../patterns/FormatCurrency'
 import { BsFillCartPlusFill } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -13,6 +14,12 @@ export default function ProductPage() {
     const zoomRef = useRef(null);
     const imgWrapperRef = useRef(null);
     const animationFrameRef = useRef(null);
+    const navigate = useNavigate();
+
+    const handleBuyNow = () => {
+        addToCart(selectedProduct);
+        navigate('/payment'); // Redireciona para a página de pagamento
+    };
 
 
    
@@ -130,7 +137,7 @@ export default function ProductPage() {
                     <p className={styles.parcel}>Em até 6x sem juros </p>
 
                     <div className={styles.paymentWrapper}>
-                        <button className={styles.buyBtn}>Comprar</button>
+                        <button className={styles.buyBtn}  onClick={handleBuyNow}>Comprar</button>
                         <BsFillCartPlusFill className={styles.addCartIcon} onClick={AddToCart}/>
                     </div>
                 </div>
