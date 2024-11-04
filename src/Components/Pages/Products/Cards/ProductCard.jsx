@@ -60,8 +60,8 @@ export default function ProductCard({ data,imgClass }) {
             onClose={handleCloseSnackbar}
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
             TransitionComponent={GrowTransition}
-            onClick={(event) => event.stopPropagation()}/*Impede navegação ao clicar no Snackbar*/>
-                <Alert onClose={handleCloseSnackbar} severity="success">
+            onClick={(event) => event.stopPropagation()}>
+                <Alert onClose={handleCloseSnackbar} severity="success" onClick={(event) => event.stopPropagation()} /*Impede navegação ao clicar no Snackbar*/>
                     Produto adicionado ao carrinho!
                 </Alert>
             </Snackbar>
