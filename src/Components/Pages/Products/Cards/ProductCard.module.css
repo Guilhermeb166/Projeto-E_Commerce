@@ -1,3 +1,19 @@
+.cardProduct,
+.addCartBtn,
+.addCart_btn {
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* Remove o destaque azul no Android */
+}
+
+.cardProduct:focus,
+.addCartBtn:focus,
+.addCart_btn:focus,
+.cardProduct:active,
+.addCartBtn:active,
+.addCart_btn:active {
+    outline: none;
+    background-color: transparent;
+}
 .cardProduct {
     border-radius: 10px;
     background-color: #fff;
