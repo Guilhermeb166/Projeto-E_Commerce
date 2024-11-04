@@ -97,7 +97,7 @@
         margin-top: 25px;
         position: relative;
         align-items: center;
-
+        user-select: none;
         height: 360px;
         width: 250px;
     }
@@ -119,6 +119,7 @@
         justify-content: center;
         align-items: center;
         gap: 0;
+        user-select: none;
         margin: 0;
         margin-top: 20px;
     
