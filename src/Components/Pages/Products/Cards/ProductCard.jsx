@@ -16,7 +16,6 @@ export default function ProductCard({ data,imgClass }) {
     const { name, price, image } = data;
     const { setSelectedProduct, addToCart } = useContext(Context); // Pegando a função addToCart
     const [showSnackbar, setShowSnackbar] = useState(false);
-    const [ openSnackbar, setOpenSnackbar] = useState(false)
     const {showCartBtn} = useContext(Context)
     const navigate = useNavigate();
 
@@ -51,14 +50,13 @@ export default function ProductCard({ data,imgClass }) {
         if (reason === 'clickaway') {
             return; // Não fecha se for um clique fora
         }
-        setTimeout(() => setOpenSnackbar(false), 300); // Remove o Snackbar após um pequeno intervalo
     };
     return (
         <div className={styles.cardProduct} onClick={handleCardClick}>
             {/* Snackbar Component */}
             {showSnackbar && (
                 <Snackbar
-                    open={openSnackbar}
+                    open={showSnackbar}
                     autoHideDuration={3000}
                     onClose={handleCloseSnackbar}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
