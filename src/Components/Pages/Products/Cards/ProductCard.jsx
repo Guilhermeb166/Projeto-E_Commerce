@@ -15,7 +15,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function ProductCard({ data,imgClass }) {
     const { name, price, image } = data;
     const { setSelectedProduct, addToCart } = useContext(Context); // Pegando a função addToCart
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [showSnackbar, setShowSnackbar] = useState(false);
+    const [ openSnackbar, setOpenSnackbar] = useState(false)
     const {showCartBtn} = useContext(Context)
     const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ export default function ProductCard({ data,imgClass }) {
     // Função para adicionar o produto ao carrinho
     const handleAddToCart = (e) => {
         e.stopPropagation(); // Evita que o clique no botão navegue para a página do produto
-        setOpenSnackbar(true); // Mostrar Snackbar ao adicionar ao carrinho
+        setShowSnackbar(true);// Mostrar Snackbar ao adicionar ao carrinho
         addToCart(data); 
     };
 
@@ -50,20 +51,28 @@ export default function ProductCard({ data,imgClass }) {
         if (reason === 'clickaway') {
             return; // Não fecha se for um clique fora
         }
-        setOpenSnackbar(false); // Fecha o Snackbar
+        setTimeout(() => setOpenSnackbar(false), 300); // Remove o Snackbar após um pequeno intervalo
     };
     return (
         <div className={styles.cardProduct} onClick={handleCardClick}>
             {/* Snackbar Component */}
-            <Snackbar open={openSnackbar}
-            autoHideDuration={3000}
-            onClose={handleCloseSnackbar}
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-            TransitionComponent={GrowTransition}>
-                <Alert onClose={handleCloseSnackbar} severity="success" onClick={(event) => event.stopPropagation()} /*Impede navegação ao clicar no Snackbar*/>
-                    Produto adicionado ao carrinho!
-                </Alert>
-            </Snackbar>
+            {showSnackbar && (
+                <Snackbar
+                    open={openSnackbar}
+                    autoHideDuration={3000}
+                    onClose={handleCloseSnackbar}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    TransitionComponent={GrowTransition}
+                >
+                    <Alert
+                        onClose={handleCloseSnackbar}
+                        severity="success"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        Produto adicionado ao carrinho!
+                    </Alert>
+                </Snackbar>
+            )}
             <div className={styles.productImgWrapper}>
                 <img src={image} alt={name} className={imgClass} />
             </div>
