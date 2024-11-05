@@ -1,6 +1,6 @@
 import Context from "./Context";
 import propTypes from 'prop-types';
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback } from "react";
 
 export default function Provider({ children }) {
   const [selectedProduct, setSelectedProduct] = useState({});
@@ -12,12 +12,26 @@ export default function Provider({ children }) {
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
+  
   });
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
-    // Sincronizar o carrinho com o localStorage
-    useEffect(() => {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
+    
+    // Função para calcular o total de produtos e o valor total
+  // UseCallback para memorizar a função e evitar re-criação
+  const calculateCartTotals = useCallback(() => {
+    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const quantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+    setTotalAmount(total);
+    setTotalQuantity(quantity);
+  }, [cart]);
+
+  // Sincronizar o carrinho com o localStorage
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    calculateCartTotals();
+  }, [cart, calculateCartTotals]);
 
   // Função para adicionar produtos ao carrinho
   const addToCart = (product) => {
@@ -87,7 +101,9 @@ export default function Provider({ children }) {
     setShowTable,
     selectedCategories, setSelectedCategories,
     errorMessage, setErrorMessage,
-    selectedFabricators,setSelectedFabricators
+    selectedFabricators,setSelectedFabricators,
+    totalAmount,     // valor total do carrinho
+    totalQuantity,   // quantidade total de produtos no carrinho
   };
 
   return (

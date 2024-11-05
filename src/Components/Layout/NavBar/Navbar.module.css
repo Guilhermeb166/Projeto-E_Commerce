@@ -42,6 +42,8 @@
 
 .logo {
     width: 39px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; /* Remove o destaque azul no Android */
 }
 
 .searchContainer {
@@ -79,6 +81,7 @@
     position: relative;
     font-size: 18.5px;
     font-weight: 300;
+    user-select: none;
     text-shadow: -1px 1px 5px #000000b3;
     font-family: "Roboto", sans-serif;
 
@@ -133,6 +136,7 @@
     border-radius: 50%;
     color: #fff;
     position: absolute;
+    user-select: none;
     font-size: 11px;
     top: 0;
     right: 0;

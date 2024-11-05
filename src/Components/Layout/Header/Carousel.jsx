@@ -9,8 +9,10 @@ import styles from './Carousel.module.css'
 import image1 from '../../../img/fundo1.png'
 import image2 from '../../../img/fundo2.png'
 import image3 from '../../../img/fundo3.png'
-export default function Carousel() {
+
+export default function Carousel() { 
     const images = [image1, image2, image3]
+    
     return (
         <div className={styles.container}>
             <Swiper
@@ -23,6 +25,10 @@ export default function Carousel() {
                     disableOnInteraction: false,
                 }}
                 modules={[Navigation, Pagination, Scrollbar, Autoplay]}
+                style={{
+                    '--swiper-navigation-color': 'white',
+                    '--swiper-pagination-color': 'white',
+                }}
             >
                 {images.map((image, index) => (
                     <SwiperSlide key={index} className={styles.carousel}>

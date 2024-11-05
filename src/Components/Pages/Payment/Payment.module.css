@@ -10,6 +10,38 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"] {
 .paymentContainer{
     margin-top: 130px;
     height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+.paymentPriceInfo{
+    background-color: #313131;
+    width: 90%;
+    max-width: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 0px 10px 0.4%;
+    gap: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    
+    border: 1px solid black;
+    box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.39);
+
+    &>p{
+        color: #fff;
+        font-size: 1.1em;
+        text-align: start;
+        text-shadow: -1px 1px 4px rgba(0, 0, 0, 0.425);
+    
+        &>span{
+            font-weight: 550;
+            color: var(--green);
+        }
+    }
 }
 .form{
     background-color: #fff;
@@ -27,7 +59,8 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"] {
         outline: none;
         border: 1px solid rgba(0, 0, 0, 0.456);
         box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.271);
-        padding:5px;
+        padding: 6px 5px;
+        margin-bottom: 3px;
         border-radius: 5px;
         width: 80%;
         max-width: 1000px;
@@ -36,12 +69,13 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"] {
 }
 .paymentOptions{
     display: flex;
-    width: 50%;
+    width: 100%;
+    max-width: 580px;
     justify-content: space-around;
 
     .paymentOptionsItem{
         border: 2px solid var(--green);
-        padding: 5px 20px;
+        padding: 7px 25px;
         border-radius: 5px;
         display: flex;
         align-items: center;
@@ -95,7 +129,7 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"] {
         cursor: pointer;
         margin-top: 0 auto;
         height: 40px;
-        padding:5px;
+        padding:4px 5px;
         display: flex;
         align-items: center;
         border-radius: 5px;
@@ -107,5 +141,43 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"] {
             cursor: pointer;
         }
 }
+.paymentCartBtn{
+    border: none;
+    width: 80%;
+    max-width: 300px;
+    background-color: var(--green);
+    color: #fff;
+    border-radius: 3.5px;
+    padding: 5px 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-size: 1.05em;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.397);
 
-   
+    &:hover{
+        background-color: #148314;
+        transition: .3s ease;
+    }
+}
+
+@media screen and (max-width:481px) {
+
+    .paymentPriceInfo{
+        &>p{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    .paymentOptions{
+        flex-direction: column;     
+        align-items: center; 
+        gap: 20px;
+        .paymentOptionsItem{
+            width: 80%;
+            max-width: 140px;
+            padding: 7px 5px;
+            
+        }
+    }
+}

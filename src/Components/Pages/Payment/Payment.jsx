@@ -1,11 +1,12 @@
 import { FaRegCreditCard } from 'react-icons/fa';
 import styles from './Payment.module.css'
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import { FaPix } from 'react-icons/fa6';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import Context from '../../../Context/Context';
 export default function Payment(){
 
     const [estadoSelecionado, setEstadoSelecionado] = useState('');
@@ -13,6 +14,7 @@ export default function Payment(){
     const [metodoPagamento, setMetodoPagamento] = useState(null);
     const [cidadeSelecionada, setCidadeSelecionada] = useState('');
     const [bandeiraSelecionada,setBandeiraSelecionada] = useState('')
+    const { totalAmount, totalQuantity } = useContext(Context);
 
     const handleMetodoPagamento = (method) => {
         setMetodoPagamento((currentMethod) => (currentMethod === method ? null : method));
@@ -47,12 +49,27 @@ export default function Payment(){
 
     return (
         <section className={styles.paymentContainer}>
-            <h1>Forma de Pagamento</h1>
+            <div className={styles.paymentPriceInfo}>
+            <p>Valor total a pagar: <span>R$ {totalAmount.toFixed(2)}</span></p>
+            <p>Quantidade de produtos: <span>{totalQuantity}</span></p>
+            </div>
             <form className={styles.form}> 
                 <input type="text" placeholder='Nome Completo' className={styles.inputForm}/>
                 <input type="text" placeholder='Seu E-Mail' className={styles.inputForm}/>            
                 <input type="text" placeholder='CPF'  className={styles.inputForm}/> 
-                <input type="text" placeholder='celular com DDD'  className={styles.inputForm}/>
+                <input type="text" placeholder='Celular com DDD'  className={styles.inputForm}
+                onInput={(e)=>{
+                    let value = e.target.value
+                    value = e.target.value.replace(/\D/g, ''); // Remove qualquer caractere que não seja número
+                    if(value.length>2){
+                        value = value.slice(0, 2) + ' ' + value.slice(2);
+                    }
+                    if(value.length>8){
+                        value = value.slice(0, 8) + '-' + value.slice(8);
+                    }
+                    e.target.value = value.slice(0, 13); // Atualiza o valor no campo de entrada
+                }}
+                />
                 <input type="text" placeholder='Endereço (rua e número)'  className={styles.inputForm}/>
                 <input type="text" placeholder='Bairro'  className={styles.inputForm}/>
 
@@ -130,10 +147,27 @@ export default function Payment(){
                                 maxLength="5" 
                                 onInput={(e) => {
                                     let value = e.target.value.replace(/\D/g, ''); // Remove qualquer caractere que não seja número
-                                    if (value.length > 2) {
-                                        value = value.slice(0, 2) + '/' + value.slice(2); // Adiciona a barra após os primeiros 2 dígitos
+                                    const currentYear = new Date().getFullYear() % 100; // Obtem os dois últimos dígitos do ano atual
+
+                                    // Verifica o mês
+                                    let month = value.slice(0, 2);//obtém os dois primeiros caracteres do valor digitado, que representam o mês.
+                                    if (month.length === 2) {
+                                        const monthNum = parseInt(month, 10);//Converte month para um número inteiro
+                                        if (monthNum < 1 || monthNum > 12) {
+                                            month = '12'; // Se o mês for inválido, define para '12' como limite superior
+                                        }
                                     }
-                                    e.target.value = value.slice(0, 5); // Limita a 5 caracteres (MM/AA)
+
+                                    // Verifica o ano
+                                    let year = value.slice(2, 4);//pegamos os caracteres do índice 2 ao 4, que representam o ano. 
+                                    if (year.length === 2) {
+                                        const yearNum = parseInt(year, 10);//Converte year para um número inteiro
+                                        if (yearNum < currentYear || yearNum > currentYear+10) {//verifica se yearNum está dentro dos limites permitidos (entre 00 e o ano atual).
+                                            year = currentYear.toString(); // Define o ano como o ano atual se ultrapassar o limite
+                                        }
+                                    }
+
+                                    e.target.value = `${month}${year ? '/' + year : ''}`.slice(0, 5); // Formata como MM/AA e limita a 5 caracteres
                                 }}
                             />
                             <input type="number"
@@ -166,6 +200,7 @@ export default function Payment(){
                                 <MenuItem value="AE">American Express</MenuItem>
                             </Select>
                         </FormControl>
+                        <button className={styles.paymentCartBtn}>Concluir Pagamento</button>
                         
                     </div>
                     ): metodoPagamento === 'pix' ? (

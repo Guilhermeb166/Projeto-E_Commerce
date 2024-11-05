@@ -1,3 +1,19 @@
+.cardProduct,
+.addCartBtn,
+.addCart_btnIcon {
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* Remove o destaque azul no Android */
+}
+
+.cardProduct:focus,
+.addCartBtn:focus,
+.addCart_btnIcon:focus,
+.cardProduct:active,
+.addCartBtn:active,
+.addCart_btnIcon:active {
+    outline: none;
+    background-color: transparent;
+}
 .cardProduct {
     border-radius: 10px;
     background-color: #fff;
@@ -26,7 +42,7 @@
     border-bottom: 1px solid rgba(161, 161, 161, 0.577);
     padding-bottom: 10px;
 }
-.addCart_btn {
+.addCart_btnIcon {
     position: absolute;
     right: 0;
     top: 0;
@@ -89,6 +105,10 @@
         background-color: var(--green);
         transition: all .6s ease;
     }
+    &:active{
+        background-color: var(--green);
+        transition: all .6s ease;
+    }
 }
 
 
@@ -97,7 +117,7 @@
         margin-top: 25px;
         position: relative;
         align-items: center;
-
+        user-select: none;
         height: 360px;
         width: 250px;
     }
@@ -119,6 +139,7 @@
         justify-content: center;
         align-items: center;
         gap: 0;
+        user-select: none;
         margin: 0;
         margin-top: 20px;
     
