@@ -42,14 +42,11 @@ export default function ProductCard({ data,imgClass }) {
     }
 
     const handleCloseSnackbar = (event, reason) => {
-
         // Impede que o clique no "X" redirecione para a página do produto
-        if (event) {
-            event.stopPropagation();
-        }
         if (reason === 'clickaway') {
             return; // Não fecha se for um clique fora
         }
+        setShowSnackbar(false); // Fecha o Snackbar
     };
     return (
         <div className={styles.cardProduct} onClick={handleCardClick}>
@@ -57,7 +54,7 @@ export default function ProductCard({ data,imgClass }) {
             {showSnackbar && (
                 <Snackbar
                     open={showSnackbar}
-                    autoHideDuration={3000}
+                    autoHideDuration={2000}
                     onClose={handleCloseSnackbar}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     TransitionComponent={GrowTransition}
