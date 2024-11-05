@@ -47,6 +47,7 @@ export default function ProductCard({ data,imgClass }) {
             return; // Não fecha se for um clique fora
         }
         setShowSnackbar(false); // Fecha o Snackbar
+        setTimeout(() => setShowSnackbar(false), 0); // Garante que o Snackbar é fechado e o foco é liberado
     };
     return (
         <div className={styles.cardProduct} onClick={handleCardClick}>
@@ -58,6 +59,7 @@ export default function ProductCard({ data,imgClass }) {
                     onClose={handleCloseSnackbar}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     TransitionComponent={GrowTransition}
+                    disableWindowBlurListener // Desabilita o foco do Snackbar para não interferir com o menu lateral
                 >
                     <Alert
                         onClose={handleCloseSnackbar}
