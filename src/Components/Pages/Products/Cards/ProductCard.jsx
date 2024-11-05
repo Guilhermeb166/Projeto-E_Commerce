@@ -73,7 +73,7 @@ export default function ProductCard({ data,imgClass }) {
             <div className={styles.productImgWrapper}>
                 <img src={image} alt={name} className={imgClass} />
             </div>
-            <button className={styles.addCart_btn}>
+            <button className={styles.addCart_btnIcon}>
                 <BsFillCartPlusFill 
                     className={styles.addCart_icon}
                     onClick={handleAddToCart} 

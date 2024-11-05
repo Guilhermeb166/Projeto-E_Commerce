@@ -13,5 +13,5 @@
 body,#root{
   height: 100vh;
   background-color: #EBEBEB;
-
+  scroll-behavior: smooth;
 }
