@@ -14,6 +14,7 @@ export default function ProductPage() {
     const zoomRef = useRef(null);
     const imgWrapperRef = useRef(null);
     const animationFrameRef = useRef(null);
+    const messageRef = useRef(null)
     const navigate = useNavigate();
     const [isZoomEnabled,setIsZoomEnabled] = useState(true)
 
@@ -25,7 +26,11 @@ export default function ProductPage() {
     // Monitora o tamanho da tela e desativa o zoom em telas menores
     useEffect(() => {
       const handleResize = () => {
-          setIsZoomEnabled(window.innerWidth >= 481);
+        const isLargeScreen = window.innerWidth >= 481;
+          setIsZoomEnabled(isLargeScreen);
+          if (messageRef.current) {
+            messageRef.current.style.display = isLargeScreen ? 'block' : 'none';
+        }
       };
 
       handleResize();
@@ -46,11 +51,10 @@ export default function ProductPage() {
         }
       }, [setSelectedProduct]); // O array vazio [] garante que o useEffect rode apenas uma vez ao montar o componente
     
-    
-
     if (!selectedProduct) {
         return <div>Produto não encontrado!</div>;
     }
+
     const productImgClass = (product) => {
         if (Array.isArray(product.category)) {
           // Verifica se o array de categorias inclui "Notebook"
@@ -116,6 +120,7 @@ export default function ProductPage() {
     };
 
     
+    
     return (
         <main className={styles.productPage}>
             <div className={styles.productPageContainer}>
@@ -143,7 +148,7 @@ export default function ProductPage() {
                         ></div>
                         
                     </div>
-                    <p style={{ color: '#000000bf',marginTop:'8px',textAlign:'center' }}>Passe o mouse para ampliar a imagem</p>
+                    <p style={{ color: '#000000bf',marginTop:'8px',textAlign:'center' }} ref={messageRef}>Passe o mouse para ampliar a imagem</p>
                 </div>
                 <div className={styles.productRight}>
                     <h1 className={styles.productName}>{name}</h1>

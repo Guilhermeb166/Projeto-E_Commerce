@@ -163,19 +163,22 @@
     .productLeft {
         width: 100%;
         flex-grow: 0;
-        
+        &>p{
+            color: transparent;
+        }
     }
     .productImgWrapper {
         width: 98%;
         height: 350px;
         cursor: pointer;
         user-select: none;
+        -webkit-tap-highlight-color: transparent; /* Remove o destaque azul no Android */
     }
     
     .productImage {
         width: 220px;
-        /* Remova ou limite transições aqui */
         user-select: none;
+        -webkit-tap-highlight-color: transparent; /* Remove o destaque azul no Android */
         cursor: pointer;
     }
     
