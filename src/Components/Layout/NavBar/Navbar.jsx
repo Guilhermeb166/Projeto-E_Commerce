@@ -140,6 +140,7 @@ export default function Navbar() {
             {/* Ícone de menu hambúrguer que só aparece em telas pequenas */}
             <div className={styles.hamburgerMenu} onClick={toggleMenu}>
                 <IoIosMenu className={styles.hamburgerIcon} />
+                <span className={styles.cartStatusLink}>{cart.reduce((total,item)=>total+item.quantity,0)}</span>
             </div>
 
             {/* Menu lateral */}
