@@ -1,5 +1,4 @@
 import styles from './Home.module.css'
-/*import { Link } from 'react-router-dom'*/
 import notebooks from '../../../productsList/Notebooks'
 import phones from '../../../productsList/Phones'
 import derivados from '../../../productsList/Derivados'
@@ -7,19 +6,24 @@ import ProductCard from '../Products/Cards/ProductCard'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import Carousel from '../../Layout/Header/Carousel'
 import { useEffect, useState } from 'react'
-import getProductImgClass from '../../patterns/ReusableFunctions'
+import getProductImgClass from '../../patterns/ReusableFunctions' // Importa uma função que aplica classes específicas a cada imagem do produto, conforme a categoria do item.
 
 export default function Home() {
     const [displayCount,setDisplayCount] = useState(4)
+    //Define um estado chamado displayCount que controla quantos produtos serão exibidos inicialmente. Começa com 4, mas pode mudar se a tela for redimensionada.
     const [numberCards,setNumberCards] = useState(16)
+    // Define numberCards, que controla quantos produtos no total estarão disponíveis para exibição. Começa com 16, mas é ajustado em função do tamanho da tela.
     const [loading,setLoading] = useState(true)
+    //Define loading, que indica se a página ainda está carregando os produtos e imagens. Inicialmente, é true para que a tela de carregamento seja exibida até que todos os itens estejam carregados.
 
-   // Seleciona todos os notebooks e celulares
+   // Seleciona todos os notebooks, celulares e derivados
    const allProducts = [...notebooks.slice(0, 8), ...phones.slice(0, 8),...derivados.slice(0,8)];
 
    // Função para embaralhar os produtos
    function shuffle(array) {
        return array.sort(() => Math.random() - 0.5);
+       //O método sort() é normalmente usado para ordenar elementos de um array com base em uma função de comparação.
+       //essa função de comparação (() => Math.random() - 0.5) gera um número aleatório entre -0.5 e 0.5 usando Math.random().
    }
 
    
@@ -27,18 +31,22 @@ export default function Home() {
     //pegar os 8 primeiros
     const notes = notebooks.slice(0, 4)
     const cells = phones.slice(0, 4)
+
     // Embaralha os produtos e seleciona os primeiros 8
     const shuffledProducts = shuffle(allProducts).slice(0, numberCards);
+    //Aplica a função shuffle em allProducts para misturar a ordem dos produtos e exibe uma quantidade limitada (numberCards) de produtos embaralhados.
 
     // Monitora o carregamento de imagens
     useEffect(() => {
-        const images = [
+        const images = [// cria uma lista (images) com todas as imagens que queremos carregar.
             ...notes.map(item => item.image),
             ...cells.map(item => item.image),
             ...shuffledProducts.map(item => item.image)
+            //O comando .map(item => item.image) passa por cada item na lista de cada categoria e pega a propriedade image de cada um deles
         ];
 
         const loadImage = src => new Promise((resolve) => {
+            //define uma função chamada loadImage que tenta carregar uma imagem. Essa função usa uma "Promessa" (Promise), que é uma forma de esperar até que algo (como carregar uma imagem) esteja completo.
             const img = new Image();
             img.src = src;
             img.onload = resolve;
@@ -46,6 +54,9 @@ export default function Home() {
 
         // Carrega todas as imagens e atualiza o estado ao finalizar
         Promise.all(images.map(loadImage)).then(() => setLoading(false));
+        /*Aqui, usamos Promise.all para esperar o carregamento de todas as imagens da lista images.
+        images.map(loadImage): Para cada imagem em images, chamamos a função loadImage para tentar carregá-la. Isso nos dá uma lista de promessas (cada promessa corresponde ao carregamento de uma imagem).
+        .then(() => setLoading(false));: Quando todas as imagens terminam de carregar, usamos .then() para dizer ao React que o carregamento acabou (setLoading(false)). Isso faz com que o ícone de "loading" desapareça, e o restante do conteúdo seja exibido. */
     }, [notes, cells, shuffledProducts]);
 
     //useEffect para monitorar a largura da tela

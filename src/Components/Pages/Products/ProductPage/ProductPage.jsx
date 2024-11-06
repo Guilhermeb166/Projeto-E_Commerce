@@ -1,6 +1,6 @@
 import styles from './ProductPage.module.css'
 import Context from '../../../../Context/Context'
-import { useContext, useEffect,useRef  } from 'react'
+import { useContext, useEffect,useRef, useState  } from 'react'
 import formatCurrency from '../../../patterns/FormatCurrency'
 import { BsFillCartPlusFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
@@ -15,11 +15,24 @@ export default function ProductPage() {
     const imgWrapperRef = useRef(null);
     const animationFrameRef = useRef(null);
     const navigate = useNavigate();
+    const [isZoomEnabled,setIsZoomEnabled] = useState(true)
 
     const handleBuyNow = () => {
         addToCart(selectedProduct);
         navigate('/payment'); // Redireciona para a página de pagamento
     };
+
+    // Monitora o tamanho da tela e desativa o zoom em telas menores
+    useEffect(() => {
+      const handleResize = () => {
+          setIsZoomEnabled(window.innerWidth >= 481);
+      };
+
+      handleResize();
+      window.addEventListener('resize', handleResize);
+
+      return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
 
    
@@ -63,27 +76,29 @@ export default function ProductPage() {
         return ''
       };
       const handleMouseEnter = () => {
-        if (zoomRef.current) {
-            zoomRef.current.style.display = 'flex';
-        }
-    };
+        if (isZoomEnabled && zoomRef.current) {
+          zoomRef.current.style.display = 'flex';
+      }
+      };
     
 
     const handleMouseMove = (e) => {
-      if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
+      if (isZoomEnabled) {
+        if (animationFrameRef.current) {
+            cancelAnimationFrame(animationFrameRef.current);
+        }
+
+        animationFrameRef.current = requestAnimationFrame(() => {
+            const { left, top, width, height } = imgWrapperRef.current.getBoundingClientRect();
+            const x = ((e.clientX - left) / width) * 100;
+            const y = ((e.clientY - top) / height) * 100;
+
+            if (zoomRef.current) {
+                zoomRef.current.style.backgroundPosition = `${x}% ${y}%`;
+            }
+        });
       }
-  
-      animationFrameRef.current = requestAnimationFrame(() => {
-          const { left, top, width, height } = imgWrapperRef.current.getBoundingClientRect();
-          const x = ((e.clientX - left) / width) * 100;
-          const y = ((e.clientY - top) / height) * 100;
-  
-          if (zoomRef.current) {
-              zoomRef.current.style.backgroundPosition = `${x}% ${y}%`;
-          }
-      });
-  };
+    };
   
   const handleMouseLeave = () => {
       if (animationFrameRef.current) {
@@ -115,7 +130,7 @@ export default function ProductPage() {
                     onMouseLeave={handleMouseLeave} // Encerra o zoom
                     ref={imgWrapperRef}>
                     
-                          <img src={image} alt={name} className={`${styles.productImage} ${productImgClass(selectedProduct)}`} />
+                          <img src={image} alt={name} className={`${styles.productImage} ${productImgClass(selectedProduct)}`} draggable='false'/>
                           
                           
                           <div
@@ -128,7 +143,7 @@ export default function ProductPage() {
                         ></div>
                         
                     </div>
-                    <p style={{ color: '#000000bf',marginTop:'8px' }}>Passe o mouse para ampliar a imagem</p>
+                    <p style={{ color: '#000000bf',marginTop:'8px',textAlign:'center' }}>Passe o mouse para ampliar a imagem</p>
                 </div>
                 <div className={styles.productRight}>
                     <h1 className={styles.productName}>{name}</h1>
