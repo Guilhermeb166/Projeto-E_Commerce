@@ -10,6 +10,7 @@ import Context from '../../../Context/Context';
 import { IoIosMenu } from 'react-icons/io';
 
 export default function Navbar() {
+    const navBar = useRef(null)
     const { cart } = useContext(Context);
     const [showSearchBar, setShowSearchBar] = useState(false)
     const [searchTerm, setSearchTerm] = useState("");
@@ -43,7 +44,7 @@ export default function Navbar() {
         }
     };
 
-    const navBar = useRef(null)
+    
 
     //Detecta a rolagem e altera o estado para adicionar o background
     useEffect(() => {

@@ -6,6 +6,7 @@ import ProductCard from '../Products/Cards/ProductCard'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import Carousel from '../../Layout/Header/Carousel'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import getProductImgClass from '../../patterns/ReusableFunctions' // Importa uma função que aplica classes específicas a cada imagem do produto, conforme a categoria do item.
 
 export default function Home() {
@@ -16,8 +17,9 @@ export default function Home() {
     const [loading,setLoading] = useState(true)
     //Define loading, que indica se a página ainda está carregando os produtos e imagens. Inicialmente, é true para que a tela de carregamento seja exibida até que todos os itens estejam carregados.
 
-   // Seleciona todos os notebooks, celulares e derivados
-   const allProducts = [...notebooks.slice(0, 8), ...phones.slice(0, 8),...derivados.slice(0,8)];
+    const navigate = useNavigate();
+
+   const allProducts = [...notebooks.slice(0, 8), ...phones.slice(0, 8),...derivados.slice(0,8)];// Seleciona todos os notebooks, celulares e derivados
 
    // Função para embaralhar os produtos
    function shuffle(array) {
@@ -65,6 +67,9 @@ export default function Home() {
             if(window.innerWidth<481){
                 setDisplayCount(2)//exibe 2 produtos
                 setNumberCards(8)
+            }else if(window.innerWidth<=834 && window.innerWidth>=481){
+                setDisplayCount(2)
+                setNumberCards(10)
             }else {
                 setDisplayCount(4)//exibe 4 produtos
                 setNumberCards(16)
@@ -77,6 +82,10 @@ export default function Home() {
         return () => window.removeEventListener('resize', handleResize); //Limpa o listener ao desmontar
     },[])
 
+    const handleCategoryClick = (category) => {
+        navigate(`/search?q=${category}`);
+    }
+
    
     return (
         <div>
@@ -88,7 +97,7 @@ export default function Home() {
                 <>
                     <Carousel />
                     <main className={styles.home}>
-                        <div className={styles.Card}>
+                        <div className={styles.Card} onClick={() => handleCategoryClick('notebook')}>
                             <h1 className={styles.cardTitle}>Notebooks</h1>
                             <div className={styles.noteCard}>
                                 {notes.slice(0, displayCount).map(notebook => (
@@ -96,7 +105,7 @@ export default function Home() {
                                 ))}
                             </div>
                         </div>
-                        <div className={styles.Card}>
+                        <div className={styles.Card} onClick={() => handleCategoryClick('smartphone')}>
                             <h1 className={styles.cardTitle}>Celulares</h1>
                             <div className={styles.cellCard}>
                                 {cells.slice(0, displayCount).map(phone => (

@@ -19,7 +19,7 @@ export default function Carousel() {
                 slidesPerView={1}
                 pagination={{ clickable: true }}
                 navigation
-                allowTouchMove={false}
+                allowTouchMove={true}
                 autoplay={{
                     delay: 3000,
                     disableOnInteraction: false,

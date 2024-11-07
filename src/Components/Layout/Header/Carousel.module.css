@@ -14,3 +14,9 @@
         margin-top: 63px;
     }
 }
+/*Para Tablets*/
+@media screen and (max-width:835px) and (min-width:481px){
+    .container{
+        margin-top: 71px;
+    }
+}
