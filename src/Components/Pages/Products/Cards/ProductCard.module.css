@@ -5,15 +5,6 @@
     -webkit-tap-highlight-color: transparent; /* Remove o destaque azul no Android */
 }
 
-.cardProduct:focus,
-.addCartBtn:focus,
-.addCart_btnIcon:focus,
-.cardProduct:active,
-.addCartBtn:active,
-.addCart_btnIcon:active {
-    outline: none;
-    background-color: transparent;
-}
 .cardProduct {
     border-radius: 10px;
     background-color: #fff;
@@ -164,5 +155,95 @@
     }
     .showBtn{
         display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .addCartBtn{
+        border-radius: 5px;
+        width: 80%;
+        padding: 8px;
+        
+    
+        &:hover{
+            background-color:black;
+            transition: none;
+        }
+        &:active{
+            background-color: var(--green);
+            transition: none;
+        }
+    }
+}
+
+/*Para Tablets*/
+@media screen and (max-width:835px) and (min-width:481px){
+    .cardProduct {
+        margin-top: 25px;
+        position: relative;
+        align-items: center;
+        user-select: none;
+        height: 360px;
+        width: 250px;
+    }
+    .cardProduct:hover .addCart_icon {
+        display: none;
+
+    }
+    .productImgWrapper {
+        width: 90%;
+        height: 240px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid rgba(161, 161, 161, 0.577);
+        padding-bottom: 10px;
+    }
+    .productInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        user-select: none;
+        margin: 0;
+        margin-top: 20px;
+    
+    }
+
+    
+    .productName {
+        font-size: 16px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .productPrice {
+        color: #000000ca;
+        position: absolute;
+        bottom:30%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 18px;
+        text-align: center;
+    }
+    .showBtn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .addCartBtn{
+        border-radius: 5px;
+        width: 80%;
+        padding: 8px;
+        
+    
+        &:hover{
+            background-color:black;
+            transition: none;
+        }
+        &:active{
+            background-color: var(--green);
+            transition: none;
+        }
     }
 }
