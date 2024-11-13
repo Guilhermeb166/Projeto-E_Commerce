@@ -176,7 +176,7 @@
 }
 
 /*Para Tablets*/
-@media screen and (max-width:835px) and (min-width:481px){
+@media screen and (max-width:835px) and (min-height: 481px){
     .cardProduct {
         margin-top: 25px;
         position: relative;
