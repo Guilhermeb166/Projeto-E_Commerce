@@ -63,7 +63,7 @@ export default function Provider({ children }) {
 
   // Função para controlar a exibição do botão do carrinho com base no tamanho da tela
   const showCartBtn = () => {
-    if (window.innerWidth < 461) {
+    if (window.innerWidth < 834) {
       setCartBtn(true);
     } else {
       setCartBtn(false);
