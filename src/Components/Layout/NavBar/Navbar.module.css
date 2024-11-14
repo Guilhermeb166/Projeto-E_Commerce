@@ -325,7 +325,7 @@
 }
 
 /*Para Tablets*/
-@media screen and (max-width:835px) and (min-width:481px){
+@media screen and (max-width:885px) and (min-width:481px){
     .navContainer {
         display: flex;
         justify-content: center;

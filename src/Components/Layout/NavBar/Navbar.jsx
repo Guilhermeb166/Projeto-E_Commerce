@@ -32,14 +32,14 @@ export default function Navbar() {
 
     const handleCategoryClick = (category) => {
         navigate(`/search?q=${category}`);
-        if(window.innerWidth<481){
+        if(window.innerWidth<885){
             setShowMenu(!showMenu)
         }
     }
 
     const handleBestSellerClick = () => {
         navigate('/best-sellers');
-        if(window.innerWidth<481){
+        if(window.innerWidth<885){
             setShowMenu(!showMenu)
         }
     };
@@ -72,7 +72,7 @@ export default function Navbar() {
     const cartPage = () =>{
         if(cart.length>0){
             navigate('/cart')
-            if (window.innerWidth < 481) {
+            if (window.innerWidth < 885) {
                 setShowMenu(!showMenu);
             }
         }else{
@@ -82,14 +82,14 @@ export default function Navbar() {
     const loginPage = ()=>{
         navigate('/login')
         
-        if (window.innerWidth < 481) {
+        if (window.innerWidth < 885) {
             setShowMenu(!showMenu);
         }
     }
     const contactPage = ()=>{
         navigate('/contact')
 
-        if (window.innerWidth < 481) {
+        if (window.innerWidth < 885) {
             setShowMenu(!showMenu);
         }
     }
