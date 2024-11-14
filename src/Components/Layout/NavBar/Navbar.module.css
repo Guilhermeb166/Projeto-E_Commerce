@@ -317,6 +317,13 @@
         color: #fff;
         cursor: pointer;
         position: relative;
+        &:hover{
+            color: #fff;
+            transition: none;
+        }
+        &:active{
+           color: var(--red);
+        }
         
     }
     .showMenu{
@@ -441,11 +448,22 @@
         top: 0;
 
     }
+    .menuList{
+        gap: 30px;
+    }
     .menuLink{
         color: #fff;
         cursor: pointer;
         position: relative;
+        font-size: 1.2em;
         
+        &:hover{
+            color: #fff;
+            transition: none;
+        }
+        &:active{
+           color: var(--red);
+        }
     }
     .showMenu{
         display: flex;

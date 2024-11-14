@@ -77,7 +77,7 @@ export default function Cart() {
   // Atualiza o showTable quando a tela é redimensionada
   useEffect(() => {
     const handleResize = () => {
-      const shouldShowTable = window.innerWidth >= 800;
+      const shouldShowTable = window.innerWidth >= 860;
       setShowTable(shouldShowTable);
     };
 
