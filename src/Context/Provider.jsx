@@ -65,7 +65,7 @@ export default function Provider({ children }) {
   const showCartBtn = () => {
     if (window.innerWidth < 481) {
       setCartBtn(true);
-    }else if (window.innerWidth<=835 && window.innerWidth>=481){
+    }else if (window.innerWidth<=885 && window.innerWidth>=481){
       setCartBtn(true);
     } else {
       setCartBtn(false);

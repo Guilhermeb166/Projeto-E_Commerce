@@ -67,7 +67,7 @@ export default function Home() {
             if(window.innerWidth<481 || window.innerHeight < 481){
                 setDisplayCount(2)//exibe 2 produtos
                 setNumberCards(8)
-            }else if(window.innerWidth<=835 && window.innerWidth>=481){
+            }else if(window.innerWidth<=885 && window.innerWidth>=481){
                 setDisplayCount(2)
                 setNumberCards(10)
             }else {

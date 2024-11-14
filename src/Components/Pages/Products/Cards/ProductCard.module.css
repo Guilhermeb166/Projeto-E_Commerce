@@ -1,9 +1,3 @@
-.cardProduct,
-.addCartBtn,
-.addCart_btnIcon {
-    outline: none;
-    -webkit-tap-highlight-color: transparent; /* Remove o destaque azul no Android */
-}
 
 .cardProduct {
     border-radius: 10px;
@@ -176,7 +170,7 @@
 }
 
 /*Para Tablets*/
-@media screen and (max-width:835px) and (min-width:481px){
+@media screen and (max-width:885px) and (min-width:481px){
     .cardProduct {
         margin-top: 25px;
         position: relative;
