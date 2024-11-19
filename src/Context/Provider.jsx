@@ -8,7 +8,7 @@ export default function Provider({ children }) {
   const [selectedFabricators,setSelectedFabricators] = useState([])
   const [errorMessage, setErrorMessage] = useState(""); // Estado para a mensagem de erro
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [showTable,setShowTable] = useState(window.innerWidth >= 481);
+  const [showTable,setShowTable] = useState(window.innerWidth >= 860);
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];

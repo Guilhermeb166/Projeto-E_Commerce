@@ -64,14 +64,14 @@ export default function Home() {
     //useEffect para monitorar a largura da tela
     useEffect(()=>{
         const handleResize = ()=>{
-            if(window.innerWidth<481 || window.innerHeight < 481){
+            if(window.innerWidth<481){
                 setDisplayCount(2)//exibe 2 produtos
                 setNumberCards(8)
             }else if(window.innerWidth<=885 && window.innerWidth>=481){
                 setDisplayCount(2)
                 setNumberCards(10)
             }else {
-                setDisplayCount(4)//exibe 4 produtos
+                setDisplayCount(3)//exibe 4 produtos
                 setNumberCards(16)
             }
         }

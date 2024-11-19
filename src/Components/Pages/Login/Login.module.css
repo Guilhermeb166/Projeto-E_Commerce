@@ -78,14 +78,7 @@
     border-radius: 5px;
    
 }
-.inputPassword{
-    font-size: 16px;
-    border: none;
-    outline: none;
-    width: 440px;
-    min-width: 150px;
-    max-width: 600px;
-}
+
 .passwordWrapper{
     padding: 10px 2px 10px 5px;
     display: flex;
@@ -95,6 +88,15 @@
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.514);
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.455);
+
+    .inputPassword{
+        font-size: 16px;
+        border: none;
+        outline: none;
+        width: 440px;
+        min-width: 150px;
+        max-width: 600px;
+    }
 }
 .passwordBtn{
     cursor: pointer;
@@ -145,7 +147,7 @@
 .plataforms {
     display: flex;
     justify-content: space-between;
-    width: 120px;
+    width: 180px;
 }
 
 .googleIcon {
@@ -253,14 +255,7 @@
         border-radius: 5px;
     
     }
-    .inputPassword{
-        font-size: 16px;
-        border: none;
-        outline: none;
-        width: 261px;
-        min-width: 150px;
-        max-width: 600px;
-    }
+    
     .passwordWrapper{
         padding: 5px 2px 5px 5px;
         display: flex;
@@ -270,6 +265,15 @@
         position: relative;
         border: 1px solid rgba(0, 0, 0, 0.514);
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.455);
+
+        .inputPassword{
+            font-size: 16px;
+            border: none;
+            outline: none;
+            width: 261px;
+            min-width: 150px;
+            max-width: 600px;
+        }
     }
     .passwordBtn{
         cursor: pointer;
@@ -312,4 +316,66 @@
     .faceIcon {
         font-size: 42px;
     }  
+}
+/*Para Tablets*/
+@media screen and (max-width:885px) and (min-width:481px){
+    .loginAnimation {
+        width: 95%;
+
+    }
+    .formContainer {
+        width: 95%;
+    }
+    .inputWrapper {
+        width: 100%;
+        align-items: center;
+
+        .label{
+            margin-right: 262px;
+        }
+    }
+    .input {
+        width: 80%;
+        min-width: 150px;
+        max-width: 600px;
+        outline: none;
+        padding: 10px 2px 10px 5px;
+        font-size: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.514);
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.455);
+        border-radius: 5px;
+    
+    }
+   
+    .passwordWrapper{
+        padding: 10px 2px 10px 5px;
+        width: 80%;
+
+
+        .inputPassword{
+            font-size: 16px;
+            border: none;
+            outline: none;
+            width: 261px;
+            min-width: 150px;
+            max-width: 600px;
+        }
+        .passwordBtn{
+            cursor: pointer;
+            position: absolute;
+            right: 5px;
+            font-size: 1.5em;
+        }
+        
+    }
+    .formBtn {
+        width: 90%;
+        max-width: 260px;
+    }
+    .plataforms {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        max-width: 160px;
+    }
 }
