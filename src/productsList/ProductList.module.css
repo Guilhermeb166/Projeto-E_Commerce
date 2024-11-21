@@ -150,20 +150,7 @@
     }
     
 }
-.fabricatorWrapper{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-    background-color: #fff;
-    padding: 12px 5px 20px;
-    border-radius: 10px;
 
-    .inputFabricator{
-        accent-color: var(--green);
-        cursor: pointer;
-    }
-}
 .filterBtn{
     background-color: var(--green);
     border: 1px solid rgba(0, 0, 0, 0.408);
@@ -216,7 +203,7 @@
 }
 
 /*Estilização para dispositivos móveis*/
-@media  screen and (max-width:481px) {
+@media  screen and (max-width:885px) {
     .SearchResultsPageContainer{
         display: flex;
         flex-direction: column;
@@ -224,9 +211,43 @@
     }
     
     .filterContainer{
-        width: 80%;   
+        width: 95%; 
+        max-width: 400px;  
         margin: 130px auto 0;
+
+        .filterSubTitle{
+            font-size: 1.2em;
+            text-align: center;
+      
+        }
     
+    }
+    .categoryWrapper{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        background-color: #fff;
+        padding: 12px 5px 20px;
+        border-radius: 10px;
+        
+        .categoryInputs{
+            display: flex;
+            align-items:center ;
+            gap:5px;
+    
+            .inputCategory{
+                accent-color: var(--green);
+                cursor: pointer;
+                
+            }
+    
+            & label{
+                font-size: 15px;
+                letter-spacing: .5px;
+            }
+        }
+        
     }
     .priceWrapper{
         display: flex;
@@ -249,7 +270,6 @@
     .CardsContainer {
         display: flex;
         align-items: center;
-        flex-direction: column;
         gap: 0px;
         margin-top: 20px;
         width: 100%;
@@ -258,11 +278,11 @@
     
     .ProductsCards {
         display: flex;
-        flex-direction: row;
+     
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
-        width: 190px;
+        gap: 40px;
+        width: 99%;
     
     }
     .notebookImg {
