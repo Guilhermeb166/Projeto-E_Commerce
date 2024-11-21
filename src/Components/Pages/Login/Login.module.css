@@ -323,12 +323,27 @@
 }
 /*Para Tablets*/
 @media screen and (max-width:885px) and (min-width:481px){
+    .loginContainer {
+        margin-top: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .loginLeft,.loginRight {
+        width: 90%;
+        max-width: 500px;
+    }
     .loginAnimation {
-        width: 95%;
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+        height: 500px;
 
     }
     .formContainer {
-        width: 95%;
+        width: 100%;
+        border-radius: 0 0 8px 8px;
     }
     .registerForm,
     .loginForm {
@@ -336,8 +351,8 @@
         align-items: center;
         width: 100%;
         flex-direction: column;
-        padding: 10px 10px 10px;
-        gap: 25px;
+        padding: 15px 10px 10px;
+        gap: 28px;
     }
     .inputWrapper {
         width: 100%;
@@ -345,7 +360,7 @@
         padding-left: 2%;
     }
     .input {
-        width: 90%;
+        width: 95%;
         min-width: 150px;
         max-width: 600px;
         outline: none;
@@ -359,7 +374,7 @@
    
     .passwordWrapper{
         padding: 10px 2px 10px 5px;
-        width: 90%;
+        width: 95%;
 
 
         .inputPassword{
@@ -380,12 +395,18 @@
     }
     .formBtn {
         width: 90%;
-        max-width: 260px;
+        max-width: 310px;
+    }
+    .forgottenPassword{
+        font-size: 1.2em;
+    }
+    .handleForm{
+        font-size: 1.4em;
     }
     .plataforms {
         display: flex;
         justify-content: space-between;
         width: 90%;
-        max-width: 160px;
+        max-width: 180px;
     }
 }

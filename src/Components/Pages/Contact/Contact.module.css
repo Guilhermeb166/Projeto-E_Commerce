@@ -155,3 +155,58 @@
     
     }
 }
+
+/*Para Tablets*/
+@media screen and (max-width:885px) and (min-width:481px){
+    .ContactContainer{
+        margin-top: 180px;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .contactGifWrapper{
+        width: 100%;
+        display: flex;
+        height: 450px;
+        justify-content: center;
+        
+    
+        .contactGif{
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px 10px 0 0;
+        }
+    }
+    .contactFormWrapper{
+        width: 100%;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+    
+        .form{
+            background-color: #fff;
+            width: 90%;
+            max-width: 500px;
+            height: 450px;
+            padding: 20px 5px 5px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: start;
+            border-radius: 0 0 10px 10px;
+    
+            & h2{
+                text-align: center;
+                width: 100%;
+                margin-bottom: 20px;
+                font-size: 2em;
+                color: var(--red);
+                font-family: "Roboto Mono", monospace;
+                font-weight: 900;
+            }
+        }
+    }
+    .formBtn{
+        width: 90%;
+        max-width: 300px;
+    }
+}
