@@ -26,7 +26,7 @@ export default function ProductPage() {
     // Monitora o tamanho da tela e desativa o zoom em telas menores
     useEffect(() => {
       const handleResize = () => {
-        const isLargeScreen = window.innerWidth >= 481;
+        const isLargeScreen = window.innerWidth >= 885;
           setIsZoomEnabled(isLargeScreen);
           if (messageRef.current) {
             messageRef.current.style.display = isLargeScreen ? 'block' : 'none';

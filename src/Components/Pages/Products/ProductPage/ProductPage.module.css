@@ -148,7 +148,7 @@
     }
 }
 
-@media screen and (max-width:481px) {
+@media screen and (max-width:885px) {
     .productPage {
         height: 920px;
     }
@@ -177,10 +177,31 @@
     }
     
     .productImage {
-        width: 220px;
+        width: 30%;
         user-select: none;
         -webkit-tap-highlight-color: transparent; /* Remove o destaque azul no Android */
         cursor: pointer;
+    }
+    /*imagem do produto*/
+    .smartphoneCartImg {
+        width: 190px;
+    }
+
+    .notebookCartImg {
+        width: 230px;
+    }
+
+    .accessoryCartImg {
+        width: 220px;
+    }
+
+    .redragonCobraCartImg {
+        min-width: 120px;
+        width: 160px;
+        max-width: 200px;
+    }
+    .webcamCartImg{
+        width: 165px;
     }
     
     .productRight {
